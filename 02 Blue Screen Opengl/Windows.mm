@@ -94,14 +94,15 @@ main(int argc , const char *argv[])
 
     fprintf(gpFile, "Program Is Started Successfully");
 
-
     // window
     NSRect win_rect;
     win_rect = NSMakeRect(0.0, 0.0, 800.0, 600.0);
 
     // create simple window
     window = [[NSWindow alloc] initWithContentRect:win_rect
-                        styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable
+                        styleMask:NSWindowStyleMaskTitled
+                        | NSWindowStyleMaskClosable 
+                        | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable
                         backing:NSBackingStoreBuffered
                         defer:NO];
 
@@ -114,7 +115,7 @@ main(int argc , const char *argv[])
     [window makeKeyAndOrderFront:self];
 }
 
-- (void)applicationWillTerminate: (NSNotification *)Notification
+- (void)applicationWillTerminate: (NSNotification *)notification
 {
     // code
     fprintf(gpFile, "Program Is Terminated Successfully\n");
@@ -160,7 +161,8 @@ main(int argc , const char *argv[])
         {
             NSOpenGLPFAOpenGLProfile,
             NSOpenGLProfileVersion4_1Core,
-            NSOpenGLPFAScreenMask, CGDisplayIDToOpenGLDisplayMask(kCGDirectMainDisplay),
+            NSOpenGLPFAScreenMask, CGDisplayIDToOpenGLDisplayMask
+                (kCGDirectMainDisplay),
             NSOpenGLPFANoRecovery,
             NSOpenGLPFAAccelerated,
             NSOpenGLPFAColorSize, 24,
@@ -197,7 +199,7 @@ main(int argc , const char *argv[])
     //code
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
 
-    [self drawRect];
+    [self drawView];
 
     [pool release];
     return(kCVReturnSuccess);
@@ -273,7 +275,7 @@ main(int argc , const char *argv[])
     // code
     [[self openGLContext]makeCurrentContext];
 
-    CGLLockContext((CGLContextObj)[[self openGLContext]CGLLockContext]);
+    CGLLockContext((CGLContextObj)[[self openGLContext]CGLContextObj]);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -314,7 +316,6 @@ main(int argc , const char *argv[])
 {
     // code
     // centralText = @"Left Mouse Button Is Clicked";
-    [self setNeedsDisplay:YES];
 }
 
 -(void)mouseDragged:(NSEvent *)theEvent
