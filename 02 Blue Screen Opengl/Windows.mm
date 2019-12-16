@@ -160,7 +160,7 @@ main(int argc , const char *argv[])
         {
             NSOpenGLPFAOpenGLProfile,
             NSOpenGLProfileVersion4_1Core,
-            NSOpenGLPFAScreenMask, CGDisplayIDToOpenDisplayMask(kCGDirectMainDispay),
+            NSOpenGLPFAScreenMask, CGDisplayIDToOpenDisplayMask(kCGDirectMainDisplay),
             NSOpenGLPFANoRecovery,
             NSOpenGLPFAAccelerated,
             NSOpenGLPFAColorSize, 24,
