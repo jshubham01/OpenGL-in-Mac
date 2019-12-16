@@ -343,6 +343,6 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp
                                 CVOptionFlags *pFlagsOut, void
                             *pDisplayLinkContext)
 {
-    CVReturn result = [(GLView *)pDisplayLinkContext getFrameForTime:pOutputTime];
+    CVReturn result = [(GlView *)pDisplayLinkContext getFrameForTime:pOutputTime];
     return(result);
 }
