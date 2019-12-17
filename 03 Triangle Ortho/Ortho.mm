@@ -241,7 +241,7 @@ main(int argc , const char *argv[])
     vertexShaderObject = glCreateShader(GL_VERTEX_SHADER);
 
     const GLchar *vertexShaderSourceCode =
-        "#version 440 core" \
+        "#version 410 core" \
         "\n" \
         "in vec4 vPosition;" \
         "uniform mat4 u_mvp_matrix;" \
@@ -302,8 +302,8 @@ main(int argc , const char *argv[])
     szInfoLog = NULL;
 
     fragmentShaderObject = glCreateShader(GL_FRAGMENT_SHADER);
-        const GLchar *pcFragmentShaderSourceCode = 
-    "#version 440 core" \
+    const GLchar *pcFragmentShaderSourceCode = 
+    "#version 410 core" \
     "\n" \
     "out vec4 vFragColor;" \
     "void main(void)" \
@@ -504,8 +504,6 @@ main(int argc , const char *argv[])
 - (void)drawView
 {
     // Declaration of matrices
-    vmath::mat4 modelViewMatrix;
-    vmath::mat4 modelViewProjectionMatrix;
 
     // code
     [[self openGLContext]makeCurrentContext];
@@ -516,8 +514,8 @@ main(int argc , const char *argv[])
     glUseProgram(shaderProgramObject);
 
     // initialize above matrices to identity
-    modelViewMatrix = vmath::mat4::identity();
-    modelViewProjectionMatrix = vmath::mat4::identity();
+    vmath::mat4 modelViewMatrix = vmath::mat4::identity();
+    vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewProjectionMatrix = orthographicProjectionMatrix * modelViewMatrix;
 
