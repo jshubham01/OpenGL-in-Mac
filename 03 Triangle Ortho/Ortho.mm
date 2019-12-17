@@ -27,11 +27,11 @@ Revision History:
 
 enum
 {
-    AMC_ATTRIBUTE_VERTEX = 0,
+    AMC_ATTRIBUTE_POSITION = 0,
     AMC_ATTRIBUTE_COLOR,
     AMC_ATTRIBUTE_NORMAL,
     AMC_ATTRIBUTE_TEXTURE0
-}
+};
 
 // 'C' Style global function declaration
 CVReturn MyDisplayLinkCallback(CVDisplayLinkRef,
@@ -264,13 +264,13 @@ main(int argc , const char *argv[])
     GLchar *szInfoLog = NULL;
 
     // getting compile status code
-    glGetShaderiv(g_uiVertextShaderObject,
+    glGetShaderiv(vertexShaderObject,
         GL_COMPILE_STATUS,
         &iShaderCompileStatus);
 
     if(GL_FALSE == iShaderCompileStatus)
     {
-        glGetShaderiv(g_uiVertextShaderObject, GL_INFO_LOG_LENGTH,
+        glGetShaderiv(vertexShaderObject, GL_INFO_LOG_LENGTH,
             &iInfoLogLength);
         if(iInfoLogLength > 0)
         {
@@ -280,7 +280,7 @@ main(int argc , const char *argv[])
                 GLsizei written;
 
                 glGetShaderInfoLog(
-                    g_uiVertextShaderObject,
+                    vertexShaderObject,
                     iInfoLogLength,
                     &written,
                     szInfoLog
@@ -318,16 +318,16 @@ main(int argc , const char *argv[])
         NULL);
 
     // compile the vertext shader
-    glCompileShader(g_uiFragmentShaderObject);
+    glCompileShader(fragmentShaderObject);
 
     // getting compile status code
-    glGetShaderiv(g_uiFragmentShaderObject,
+    glGetShaderiv(fragmentShaderObject,
         GL_COMPILE_STATUS,
         &iShaderCompileStatus);
 
     if (GL_FALSE == iShaderCompileStatus)
     {
-        glGetShaderiv(g_uiFragmentShaderObject,
+        glGetShaderiv(fragmentShaderObject,
         GL_INFO_LOG_LENGTH,
         &iInfoLogLength);
 
@@ -345,7 +345,7 @@ main(int argc , const char *argv[])
                         szInfoLog
                     );
 
-                fprintf(g_fLogger, ("FRAGMENT SHADER FATAL COMPILATION ERROR: %s\n"), szInfoLog);
+                fprintf(gpFile, ("FRAGMENT SHADER FATAL COMPILATION ERROR: %s\n"), szInfoLog);
                 free(szInfoLog);
                 [self release];
                 [NSApp terminate:self];
@@ -475,16 +475,16 @@ main(int argc , const char *argv[])
         // following func call is from vmath library
         orthographicProjectionMatrix = vmath::ortho(-100.0f,
             100.0f,
-            (-100.0f * ((GLfloat)iheight / (GLfloat)iwidth)),
-            (100.0f * ((GLfloat)iheight / (GLfloat)iwidth)),
+            (-100.0f * ((GLfloat)height / (GLfloat)width)),
+            (100.0f * ((GLfloat)height / (GLfloat)width)),
             -100.0f,
             100.0f);
     }
     else
     {
         orthographicProjectionMatrix = vmath::ortho(
-            (-100.0f * ((GLfloat)iwidth / (GLfloat)iheight)),
-            (100.0f * ((GLfloat)iwidth / (GLfloat)iheight)),
+            (-100.0f * ((GLfloat)width / (GLfloat)height)),
+            (100.0f * ((GLfloat)width / (GLfloat)height)),
             -100.0f,
             100.0f,
             -100.0f,
