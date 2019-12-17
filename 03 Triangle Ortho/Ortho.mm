@@ -384,13 +384,14 @@ main(int argc , const char *argv[])
 
         if(iInfoLogLength > 0)
         {
+            szInfoLog = NULL;
             szInfoLog = (char *)malloc(iInfoLogLength);
             if(NULL != szInfoLog)
             {
                 GLsizei written;
                 glGetProgramInfoLog(shaderProgramObject, iInfoLogLength,
                     &written, szInfoLog);
-                fprint(gpFile, "Shader Program Link Log: %s \n", szInfoLog);
+                fprintf(gpFile, "Shader Program Link Log: %s \n", szInfoLog);
                 free(szInfoLog);
                 [self release];
                 [NSApp terminate:self];
@@ -401,7 +402,7 @@ main(int argc , const char *argv[])
     // now this is rule: attribute binding should happen before linking program and
     // uniforms binding should happen after linking
     mvpUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_mvp_matrix"
     );
 
@@ -610,7 +611,7 @@ main(int argc , const char *argv[])
     fragmentShaderObject = 0;
 
     glDeleteProgram(shaderProgramObject);
-    shaderProgramObect = 0;
+    shaderProgramObject = 0;
 
     CVDisplayLinkStop(displayLink);
     CVDisplayLinkRelease(displayLink);
