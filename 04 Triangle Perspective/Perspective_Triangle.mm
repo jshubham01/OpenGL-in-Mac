@@ -471,7 +471,7 @@ main(int argc , const char *argv[])
 
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
-    perspectiveProjectionMatrix = vmath::perspective(45.0f, (GLfloat)iwidth/(GLfloat)iheight, 0.1f, 100.0f);
+    perspectiveProjectionMatrix = vmath::perspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 100.0f);
     CGLUnlockContext((CGLContextObj)[[self openGLContext] CGLContextObj]);
 }
 
