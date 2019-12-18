@@ -541,7 +541,7 @@ main(int argc , const char *argv[])
     // bind with vow (this is avoiding many necessary binding with vbo_triangle_poss)
     glBindVertexArray(vao_triangle);
 
-    glDrawArrays(GL_TRIANGLES,  0,  s3);
+    glDrawArrays(GL_TRIANGLES,  0,  3);
     glBindVertexArray(0);
 
     // Rectangle
