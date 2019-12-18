@@ -545,8 +545,8 @@ main(int argc , const char *argv[])
     glBindVertexArray(0);
 
     // Rectangle
-    vmath::mat4 modelViewMatrix = vmath::mat4::identity();
-    vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
+    modelViewMatrix = vmath::mat4::identity();
+    modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewMatrix = vmath::translate(1.3f, 0.0f, -3.5f);
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
