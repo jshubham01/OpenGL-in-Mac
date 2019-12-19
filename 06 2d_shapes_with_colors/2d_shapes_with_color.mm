@@ -5,7 +5,8 @@ Module Name:
 
 Abstract:
     Perspective
-    Triangle & Rectangle with Color Simultaneous
+    Coexisting Triangle & Rectangle with Color
+    Animation
 
 Revision History:
     Date:	Dec 20, 2019.
@@ -169,9 +170,6 @@ main(int argc , const char *argv[])
 
     GLuint vbo_color_triangle;
     GLuint vbo_color_rectangle;
-
-    GLfloat fangleTriangle = 0.0f;
-    GLfloat fangleRectangle = 0.0f;
 
     GLuint mvpUniform;
     vmath:: mat4 perspectiveProjectionMatrix;
@@ -598,12 +596,9 @@ main(int argc , const char *argv[])
 
     // initialize above matrices to identity
     vmath::mat4 modelViewMatrix = vmath::mat4::identity();
-    vmath::mat4 modelRotationMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewMatrix = vmath::translate(-1.3f, 0.0f, -3.5f);
-    modelRotationMatrix = vmath::rotate(fangleTriangle, 0.0f, 1.0f, 0.0f);
-    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
@@ -621,12 +616,9 @@ main(int argc , const char *argv[])
 
     // Rectangle
     modelViewMatrix = vmath::mat4::identity();
-    modelRotationMatrix = vmath::mat4::identity();
     modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewMatrix = vmath::translate(1.3f, 0.0f, -3.5f);
-    modelRotationMatrix = vmath::rotate(fangleTriangle, 0.0f, 1.0f, 0.0f);
-    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
@@ -642,18 +634,6 @@ main(int argc , const char *argv[])
     glBindVertexArray(0);
 
     glUseProgram(0);
-
-    fangleTriangle += 0.1f;
-    if (fangleTriangle > 360.0f)
-    {
-        fangleTriangle = 0.0f;
-    }
-
-    fangleRectangle += 0.1f;
-    if (fangleRectangle > 360.0f)
-    {
-        fangleRectangle = 0.0f;
-    }
 
     CGLFlushDrawable((CGLContextObj)[[self openGLContext]CGLContextObj]);
     CGLUnlockContext((CGLContextObj)[[self openGLContext]CGLContextObj]);
