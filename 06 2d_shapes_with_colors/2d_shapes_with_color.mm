@@ -378,7 +378,7 @@ main(int argc , const char *argv[])
         AMC_ATTRIBUTE_POSITION,
         "vPosition");
 
-    glBindAttribLocation(g_uiShaderProgramObject,
+    glBindAttribLocation(shaderProgramObject,
         AMC_ATTRIBUTE_COLOR,
         "vColor");
 
