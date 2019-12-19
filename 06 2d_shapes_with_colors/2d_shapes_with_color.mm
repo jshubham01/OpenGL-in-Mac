@@ -4,13 +4,14 @@ Module Name:
     This Code Works To Create Triangle Perspective Projection in OpenGL on mac
 
 Abstract:
-    Ortho Triangle
+    Perspective
+    Triangle & Rectangle with Color Simultaneous
 
 Revision History:
-    Date:	Dec 18, 2019.
+    Date:	Dec 20, 2019.
     Desc:	Started
 
-    Date:	Dec 18, 2019.
+    Date:	Dec 20, 2019.
     Desc:	Done
 */
 
@@ -250,10 +251,13 @@ main(int argc , const char *argv[])
         "#version 410 core" \
         "\n" \
         "in vec4 vPosition;" \
+        "in vec4 vColor;" \
         "uniform mat4 u_mvp_matrix;" \
+        "out vec4 voutColor;" \
         "void main(void)" \
         "{" \
-        "gl_Position = u_mvp_matrix * vPosition;" \
+            "gl_Position = u_mvp_matrix * vPosition;" \
+            "voutColor = vColor;" \
         "}";
 
     // specify above code of shader to vertext shader object
@@ -311,10 +315,11 @@ main(int argc , const char *argv[])
     const GLchar *pcFragmentShaderSourceCode = 
     "#version 410 core" \
     "\n" \
+    "in vec4 voutColor;" \
     "out vec4 vFragColor;" \
     "void main(void)" \
     "{" \
-    "vFragColor = vec4(1.0, 1.0, 1.0, 1.0);" \
+    "vFragColor = voutColor;" \
     "}";
 
     // specify above code of shader to vertext shader object
@@ -372,6 +377,10 @@ main(int argc , const char *argv[])
     glBindAttribLocation(shaderProgramObject,
         AMC_ATTRIBUTE_POSITION,
         "vPosition");
+
+    glBindAttribLocation(g_uiShaderProgramObject,
+        AMC_ATTRIBUTE_COLOR,
+        "vColor");
 
     // link the shader
     glLinkProgram(shaderProgramObject);
@@ -599,7 +608,6 @@ main(int argc , const char *argv[])
             modelViewProjectionMatrix
         );
 
-    // bind with vow (this is avoiding many necessary binding with vbo_triangle_poss)
     glBindVertexArray(vao_triangle);
 
     glDrawArrays(GL_TRIANGLES,  0,  3);
@@ -620,7 +628,6 @@ main(int argc , const char *argv[])
             modelViewProjectionMatrix
         );
 
-    // bind with vow (this is avoiding many necessary binding with vbo_triangle_poss)
     glBindVertexArray(vao_rectangle);
     glDrawArrays(GL_TRIANGLE_FAN, 	0,	4);
     glBindVertexArray(0);
@@ -686,10 +693,22 @@ main(int argc , const char *argv[])
         vbo_triangle_pos = 0;
     }
 
+    if(vbo_color_triangle)
+    {
+        glDeleteBuffers(1, &vbo_color_triangle);
+        vbo_color_triangle = 0;
+    }
+
     if(vbo_rectangle_pos)
     {
         glDeleteBuffers(1, &vbo_rectangle_pos);
         vbo_rectangle_pos = 0;
+    }
+
+    if(vbo_color_rectangle)
+    {
+        glDeleteBuffers(1, &vbo_color_rectangle);
+        vbo_color_rectangle = 0;
     }
 
     if (vao_triangle)
