@@ -26,6 +26,9 @@ Revision History:
 // Global Variables declarations and initializations
 /////////////////////////////////////////////////////
 
+GLfloat fangleTriangle = 0.0f;
+GLfloat fangleRectangle = 0.0f;
+
 enum
 {
     AMC_ATTRIBUTE_POSITION = 0,
@@ -170,8 +173,7 @@ main(int argc , const char *argv[])
     GLuint vbo_color_triangle;
     GLuint vbo_color_rectangle;
 
-    GLfloat fangleTriangle = 0.0f;
-    GLfloat fangleRectangle = 0.0f;
+
 
     GLuint mvpUniform;
     vmath:: mat4 perspectiveProjectionMatrix;
@@ -643,13 +645,13 @@ main(int argc , const char *argv[])
 
     glUseProgram(0);
 
-    fangleTriangle += 0.1f;
+    fangleTriangle += 0.3f;
     if (fangleTriangle > 360.0f)
     {
         fangleTriangle = 0.0f;
     }
 
-    fangleRectangle += 0.1f;
+    fangleRectangle += 0.3f;
     if (fangleRectangle > 360.0f)
     {
         fangleRectangle = 0.0f;
