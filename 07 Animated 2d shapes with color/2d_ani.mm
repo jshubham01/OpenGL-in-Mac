@@ -542,7 +542,7 @@ main(int argc , const char *argv[])
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
-    glEnable(GL_CULL_FACE);
+    // glEnable(GL_CULL_FACE);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClearDepth(1.0f);
 
@@ -602,7 +602,7 @@ main(int argc , const char *argv[])
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewMatrix = vmath::translate(-1.3f, 0.0f, -3.5f);
-    modelRotationMatrix = vmath::rotate(fangleTriangle, 1.0f, 1.0f, 1.0f);
+    modelRotationMatrix = vmath::rotate(fangleTriangle, 0.0f, 1.0f, 0.0f);
     modelViewMatrix = modelViewMatrix * modelRotationMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
@@ -625,9 +625,9 @@ main(int argc , const char *argv[])
     modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewMatrix = vmath::translate(1.3f, 0.0f, -3.5f);
-    modelRotationMatrix = vmath::rotate(fangleTriangle, 0.0f, 0.0f, 1.0f);
-    modelRotationMatrix = modelRotationMatrix * vmath::rotate(fangleTriangle, 0.0f, 1.0f, 0.0f);
-    modelRotationMatrix = modelRotationMatrix * vmath::rotate(fangleTriangle, 0.0f, 1.0f, 0.0f);
+    modelRotationMatrix = vmath::rotate(fangleTriangle, 1.0f, 0.0f, 0.0f);
+    //modelRotationMatrix = modelRotationMatrix * vmath::rotate(fangleTriangle, 0.0f, 1.0f, 0.0f);
+    //modelRotationMatrix = modelRotationMatrix * vmath::rotate(fangleTriangle, 0.0f, 1.0f, 0.0f);
 
     modelViewMatrix = modelViewMatrix * modelRotationMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
