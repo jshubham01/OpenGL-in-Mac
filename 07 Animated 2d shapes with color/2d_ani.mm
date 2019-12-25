@@ -602,7 +602,7 @@ main(int argc , const char *argv[])
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewMatrix = vmath::translate(-1.3f, 0.0f, -3.5f);
-    modelRotationMatrix = vmath::rotate(fangleTriangle, 0.0f, 1.0f, 0.0f);
+    modelRotationMatrix = vmath::rotate(fangleTriangle, 1.0f, 1.0f, 1.0f);
     modelViewMatrix = modelViewMatrix * modelRotationMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
@@ -638,7 +638,10 @@ main(int argc , const char *argv[])
         );
 
     glBindVertexArray(vao_rectangle);
-    glDrawArrays(GL_TRIANGLE_FAN, 	0,	4);
+    glDrawArrays(GL_TRIANGLE_FAN,
+                0,
+                4);
+
     glBindVertexArray(0);
 
     glUseProgram(0);
