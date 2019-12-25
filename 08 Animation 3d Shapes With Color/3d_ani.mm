@@ -5,13 +5,13 @@ Module Name:
 
 Abstract:
     Perspective
-    Triangle & Rectangle with Color Simultaneous
+    Pyramid and Cube having Colors Rotating
 
 Revision History:
-    Date:	Dec 20, 2019.
+    Date:	Dec 26, 2019.
     Desc:	Started
 
-    Date:	Dec 20, 2019.
+    Date:	Dec 26, 2019.
     Desc:	Done
 */
 
@@ -662,7 +662,6 @@ main(int argc , const char *argv[])
 - (void)drawView
 {
     // Declaration of matrices
-
     // code
     [[self openGLContext]makeCurrentContext];
 
@@ -676,7 +675,7 @@ main(int argc , const char *argv[])
     vmath::mat4 modelRotationMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
-    modelViewMatrix = vmath::translate(-1.3f, 0.0f, -3.5f);
+    modelViewMatrix = vmath::translate(-2.0f, 0.0f, -5.5f);
     modelRotationMatrix = vmath::rotate(fanglePyramid, 0.0f, 1.0f, 0.0f);
     modelViewMatrix = modelViewMatrix * modelRotationMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
@@ -684,8 +683,8 @@ main(int argc , const char *argv[])
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
     glUniformMatrix4fv(
             mvpUniform,
-            1,			//	how many matrices
-            GL_FALSE,	//	Transpose is needed ? ->
+            1,          //  how many matrices
+            GL_FALSE,   //  Transpose is needed ? ->
             modelViewProjectionMatrix
         );
 
@@ -698,7 +697,7 @@ main(int argc , const char *argv[])
     modelRotationMatrix = vmath::mat4::identity();
     modelViewProjectionMatrix = vmath::mat4::identity();
 
-    modelViewMatrix = vmath::translate(1.3f, 0.0f, -3.5f);
+    modelViewMatrix = vmath::translate(2.0f, 0.0f, -5.5f);
     modelRotationMatrix = vmath::rotate(fanglePyramid, 1.0f, 0.0f, 0.0f);
     modelRotationMatrix = modelRotationMatrix * vmath::rotate(fanglePyramid, 0.0f, 1.0f, 0.0f);
     modelRotationMatrix = modelRotationMatrix * vmath::rotate(fanglePyramid, 0.0f, 1.0f, 0.0f);
