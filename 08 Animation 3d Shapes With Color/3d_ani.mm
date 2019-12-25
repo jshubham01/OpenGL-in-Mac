@@ -690,11 +690,10 @@ main(int argc , const char *argv[])
         );
 
     glBindVertexArray(vao_pyramid);
-
-    glDrawArrays(GL_TRIANGLES,  0,  3);
+    glDrawArrays(GL_TRIANGLES,  0,  12);
     glBindVertexArray(0);
 
-    // Rectangle
+    // Cube
     modelViewMatrix = vmath::mat4::identity();
     modelRotationMatrix = vmath::mat4::identity();
     modelViewProjectionMatrix = vmath::mat4::identity();
@@ -716,10 +715,13 @@ main(int argc , const char *argv[])
         );
 
     glBindVertexArray(vao_cube);
-    glDrawArrays(GL_TRIANGLE_FAN,
-                0,
-                4);
 
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 8, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 12, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 16, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 20, 4);
     glBindVertexArray(0);
 
     glUseProgram(0);
