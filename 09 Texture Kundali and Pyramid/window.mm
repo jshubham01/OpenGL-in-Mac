@@ -513,6 +513,37 @@ main(int argc , const char *argv[])
 		0.0f, 0.0f
         };
 
+    const GLfloat fcubeVertices[] = { 1.0f, 1.0f, -1.0f,
+			-1.0f, 1.0f, -1.0f,
+			-1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f,
+
+			1.0f, -1.0f, -1.0f ,
+			-1.0f, -1.0f, -1.0f,
+			-1.0f, -1.0f, 1.0f,
+			1.0f, -1.0f, 1.0f,
+
+			1.0f, 1.0f, 1.0f,
+			-1.0f, 1.0f, 1.0f,
+			-1.0f, -1.0f, 1.0f,
+			1.0f, -1.0f, 1.0f,
+
+			1.0f, 1.0f, -1.0f,
+			-1.0f, 1.0f, -1.0f,
+			-1.0f, -1.0f, -1.0f,
+			1.0f, -1.0f, -1.0f,
+
+			1.0f, 1.0f, -1.0f,
+			1.0f, 1.0f, 1.0f,
+			1.0f, -1.0f, 1.0f,
+			1.0f, -1.0f, -1.0f,
+
+			-1.0f, 1.0f, -1.0f,
+			-1.0f, 1.0f, 1.0f,
+			-1.0f, -1.0f, 1.0f,
+			-1.0f, -1.0f, -1.0f
+	};
+
 
     glGenVertexArrays(1, &vao_cube);
     glBindVertexArray(vao_cube);
@@ -597,7 +628,7 @@ main(int argc , const char *argv[])
     int w = (int)CGImageGetWidth(cgImage);
     int h = (int)CGImageGetHeight(cgImage);
 
-    CGDataRef imageData = CGDataProviderCopyData(CGImageGetDataProvider(cgImage));
+    CFDataRef imageData = CGDataProviderCopyData(CGImageGetDataProvider(cgImage));
     void *pixels = (void *)CFDataGetBytePtr(imageData);
 
     GLuint bmpTexture;
@@ -691,7 +722,7 @@ main(int argc , const char *argv[])
             modelViewProjectionMatrix
         );
 
-    glBindTexture(GL_TEXTURE_2D, cube_texture)
+    glBindTexture(GL_TEXTURE_2D, cube_texture);
     glBindVertexArray(vao_cube);
 
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
