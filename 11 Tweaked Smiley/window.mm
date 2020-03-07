@@ -410,7 +410,7 @@ main(int argc , const char *argv[])
         GL_FLOAT,                       // type of above data
         GL_FALSE,                       // no normalization is desired
         0,                              // (dangha)
-        null                            // offset to start in above attrib position
+        NULL                            // offset to start in above attrib position
     );
 
     glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
@@ -425,7 +425,7 @@ main(int argc , const char *argv[])
 
     glBufferData(GL_ARRAY_BUFFER,
         sizeof(ftextCooards),
-        null,
+        NULL,
         GL_DYNAMIC_DRAW);
 
     glVertexAttribPointer(AMC_ATTRIBUTE_TEXTURE0,
@@ -433,7 +433,7 @@ main(int argc , const char *argv[])
         GL_FLOAT,
         GL_FALSE,
         0,
-        null);
+        NULL);
 
     glEnableVertexAttribArray(AMC_ATTRIBUTE_TEXTURE0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
