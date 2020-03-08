@@ -517,139 +517,139 @@ main(int argc , const char *argv[])
     //
 	// Circle
 	//
-	// GLfloat fAngle = 0.0f;
-	// float fCirclePositions[1000 * 3];
-	// for (ind = 0; ind < 1000; ind++)
-	// {
-	// 	fAngle = 2.0f * M_PI * ind / 1000;
-	// 	fCirclePositions[ind * 3] = cos(fAngle);
-	// 	fCirclePositions[ind * 3 + 1] = sin(fAngle);
-	// 	fCirclePositions[ind * 3 + 2] = 0.0f;
-	// }
+	GLfloat fAngle = 0.0f;
+	float fCirclePositions[1000 * 3];
+	for (ind = 0; ind < 1000; ind++)
+	{
+		fAngle = 2.0f * M_PI * ind / 1000;
+		fCirclePositions[ind * 3] = cos(fAngle);
+		fCirclePositions[ind * 3 + 1] = sin(fAngle);
+		fCirclePositions[ind * 3 + 2] = 0.0f;
+	}
 
-	// glGenVertexArrays(1, &vao_Circle);
-	// glBindVertexArray(vao_Circle);
-	// glGenBuffers(1, &vbo_Circle);
-	// glBindBuffer(GL_ARRAY_BUFFER, vbo_Circle);
-	// glBufferData(GL_ARRAY_BUFFER, sizeof(fCirclePositions), fCirclePositions, GL_STATIC_DRAW);
-	// glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-	// glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+	glGenVertexArrays(1, &vao_Circle);
+	glBindVertexArray(vao_Circle);
+	glGenBuffers(1, &vbo_Circle);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_Circle);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fCirclePositions), fCirclePositions, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
 
-	// glBindBuffer(GL_ARRAY_BUFFER, 0);
-	// glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 
 
-    // //
-    // // Rectangle
-    // //
-    // GLfloat fSide = sqrt(0.5f);
-    // const GLfloat fArrayRectangle[] = {
-    //     fSide, fSide, 0.0f,
-    //     -fSide, fSide, 0.0f,
-    //     -fSide, fSide, 0.0f,
-    //     -fSide, -fSide, 0.0f,
-    //     -fSide, -fSide, 0.0f,
-    //     fSide, -fSide, 0.0f,
-    //     fSide, -fSide, 0.0f,
-    //     fSide, fSide, 0.0f
-    // };
+    //
+    // Rectangle
+    //
+    GLfloat fSide = sqrt(0.5f);
+    const GLfloat fArrayRectangle[] = {
+        fSide, fSide, 0.0f,
+        -fSide, fSide, 0.0f,
+        -fSide, fSide, 0.0f,
+        -fSide, -fSide, 0.0f,
+        -fSide, -fSide, 0.0f,
+        fSide, -fSide, 0.0f,
+        fSide, -fSide, 0.0f,
+        fSide, fSide, 0.0f
+    };
 
-    // glGenVertexArrays(1, &vao_Rectangle);
-    // glBindVertexArray(vao_Rectangle);
-    // glGenBuffers(1, &vbo_Rectangle);
-    // glBindBuffer(GL_ARRAY_BUFFER, vbo_Rectangle);
-    // glBufferData(GL_ARRAY_BUFFER,
-    //     sizeof(fArrayRectangle),
-    //     fArrayRectangle,
-    //     GL_STATIC_DRAW);
-    // glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-    // glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
-    // glBindBuffer(GL_ARRAY_BUFFER, 0);
-    // glBindVertexArray(0);
+    glGenVertexArrays(1, &vao_Rectangle);
+    glBindVertexArray(vao_Rectangle);
+    glGenBuffers(1, &vbo_Rectangle);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_Rectangle);
+    glBufferData(GL_ARRAY_BUFFER,
+        sizeof(fArrayRectangle),
+        fArrayRectangle,
+        GL_STATIC_DRAW);
+    glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 
-	// // Triangle for Incircle
-	// // Side of Triangle - fSide 
+	// Triangle for Incircle
+	// Side of Triangle - fSide 
 
-	// // Calculating lengths of sides
-	// GLfloat fx, fy, fTempfA, fTempfB, fDistA, fDistB, fDistC;
+	// Calculating lengths of sides
+	GLfloat fx, fy, fTempfA, fTempfB, fDistA, fDistB, fDistC;
 
-	// fx = fy = fSide;
-	// fTempfA = -fx;
-	// fTempfB = -2 * fy;
-	// fDistA = sqrt(fTempfA*fTempfA + fTempfB * fTempfB);
-	// fTempfA = 2 * fx;
-	// fTempfB = 0.0f;
-	// fDistB = sqrt(fTempfA*fTempfA + fTempfB * fTempfB);
-	// fTempfA = -fx;
-	// fTempfB = 2 * fy;
-	// fDistC = sqrt(fTempfA * fTempfA + fTempfB * fTempfB);
+	fx = fy = fSide;
+	fTempfA = -fx;
+	fTempfB = -2 * fy;
+	fDistA = sqrt(fTempfA*fTempfA + fTempfB * fTempfB);
+	fTempfA = 2 * fx;
+	fTempfB = 0.0f;
+	fDistB = sqrt(fTempfA*fTempfA + fTempfB * fTempfB);
+	fTempfA = -fx;
+	fTempfB = 2 * fy;
+	fDistC = sqrt(fTempfA * fTempfA + fTempfB * fTempfB);
 
-	// const GLfloat fInTriangle[] = { 0.0f, fy, 0.0f,
-	// 			-fx, -fy, 0.0f,
-	// 			-fx, -fy, 0.0f,
-	// 			fx, -fy, 0.0f,
-	// 			fx, -fy, 0.0f,
-	// 			0.0f, fy, 0.0f
-	// };
+	const GLfloat fInTriangle[] = { 0.0f, fy, 0.0f,
+				-fx, -fy, 0.0f,
+				-fx, -fy, 0.0f,
+				fx, -fy, 0.0f,
+				fx, -fy, 0.0f,
+				0.0f, fy, 0.0f
+	};
 
-	// glGenVertexArrays(1, &vao_Triangle);
-	// glBindVertexArray(vao_Triangle);
+	glGenVertexArrays(1, &vao_Triangle);
+	glBindVertexArray(vao_Triangle);
 
-	// glGenBuffers(1, &vbo_Triangle);
-	// glBindBuffer(GL_ARRAY_BUFFER, vbo_Triangle);
-	// glBufferData(GL_ARRAY_BUFFER, sizeof(fInTriangle), fInTriangle, GL_STATIC_DRAW);
-	// glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-	// glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
-	// glBindBuffer(GL_ARRAY_BUFFER, 0);
-	// glBindVertexArray(0);
+	glGenBuffers(1, &vbo_Triangle);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_Triangle);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fInTriangle), fInTriangle, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 
-	// //
-	// // In-Circle
-	// // 
-	// GLfloat fIncircleXCord, fIncircleYCord, fSemiPerimeter, fAreaSquare, fArea, fInRadius;
+	//
+	// In-Circle
+	// 
+	GLfloat fIncircleXCord, fIncircleYCord, fSemiPerimeter, fAreaSquare, fArea, fInRadius;
 
-	// fIncircleXCord = ((fDistB) * 0.0f) + ((fDistC * (-fx)) + ((fDistA) * fx))
-	// 					/ (fDistA + fDistB + fDistC);
+	fIncircleXCord = ((fDistB) * 0.0f) + ((fDistC * (-fx)) + ((fDistA) * fx))
+						/ (fDistA + fDistB + fDistC);
 
-	// fIncircleYCord = (((fDistB) * fy) + (fDistC * (-fy)) + ((fDistA) * (-fy)))
-	// 	/ (fDistA + fDistB + fDistC);
+	fIncircleYCord = (((fDistB) * fy) + (fDistC * (-fy)) + ((fDistA) * (-fy)))
+		/ (fDistA + fDistB + fDistC);
 
-	// fSemiPerimeter = (fDistA + fDistB + fDistC) / 2;
+	fSemiPerimeter = (fDistA + fDistB + fDistC) / 2;
 
-	// fAreaSquare = (fSemiPerimeter - fDistA)
-	// 	* (fSemiPerimeter - fDistB)
-	// 	* (fSemiPerimeter - fDistC) * fSemiPerimeter;
+	fAreaSquare = (fSemiPerimeter - fDistA)
+		* (fSemiPerimeter - fDistB)
+		* (fSemiPerimeter - fDistC) * fSemiPerimeter;
 
-	// fArea = sqrt(fAreaSquare);
-	// fInRadius = fArea / fSemiPerimeter;
+	fArea = sqrt(fAreaSquare);
+	fInRadius = fArea / fSemiPerimeter;
 
-	// ind = 0;
-	// fAngle = 0.0f;
-	// float fInCirclePositions[1000 * 3];
-	// for (ind = 0; ind < 1000; ind++)
-	// {
-	// 	fAngle = 2.0f * M_PI * ind / 1000;
-	// 	fInCirclePositions[ind * 3] = fInRadius * cos(fAngle) + fIncircleXCord;
-	// 	fInCirclePositions[ind * 3 + 1] = fInRadius * sin(fAngle) + fIncircleYCord;
-	// 	fInCirclePositions[ind * 3 + 2] = 0.0f;
-	// }
+	ind = 0;
+	fAngle = 0.0f;
+	float fInCirclePositions[1000 * 3];
+	for (ind = 0; ind < 1000; ind++)
+	{
+		fAngle = 2.0f * M_PI * ind / 1000;
+		fInCirclePositions[ind * 3] = fInRadius * cos(fAngle) + fIncircleXCord;
+		fInCirclePositions[ind * 3 + 1] = fInRadius * sin(fAngle) + fIncircleYCord;
+		fInCirclePositions[ind * 3 + 2] = 0.0f;
+	}
 
-	// glGenVertexArrays(1, &vao_In_Circle);
-	// glBindVertexArray(vao_In_Circle);
+	glGenVertexArrays(1, &vao_In_Circle);
+	glBindVertexArray(vao_In_Circle);
 
-	// glGenBuffers(1, &vbo_In_Circle);
-	// glBindBuffer(GL_ARRAY_BUFFER, vbo_In_Circle);
-	// glBufferData(GL_ARRAY_BUFFER, sizeof(fInCirclePositions), fInCirclePositions, GL_STATIC_DRAW);
-	// glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-	// glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
-	// glBindBuffer(GL_ARRAY_BUFFER, 0);
-	// glBindVertexArray(0);
+	glGenBuffers(1, &vbo_In_Circle);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_In_Circle);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fInCirclePositions), fInCirclePositions, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 
-    // glEnable(GL_DEPTH_TEST);
-    // glDepthFunc(GL_LEQUAL);
-    // glEnable(GL_CULL_FACE);
-    // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    // glClearDepth(1.0f);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
+    glEnable(GL_CULL_FACE);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearDepth(1.0f);
 
     // set projection  Matrix
     perspectiveProjectionMatrix = vmath::mat4::identity();
