@@ -425,7 +425,7 @@ main(int argc , const char *argv[])
     );
 
     colorUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        vertexShaderObject,
         "u_vLineColor"
     );
 
