@@ -163,8 +163,20 @@ main(int argc , const char *argv[])
     GLuint vao;
     GLuint vbo;
 
+    GLuint vao_Circle;
+    GLuint vbo_Circle;
+
     GLuint vao_verticalLines;
     GLuint vbo_verticalLines;
+
+    GLuint vao_Rectangle;
+    GLuint vbo_Rectangle;
+
+    GLuint vao_Triangle;
+    GLuint vbo_Triangle;
+
+    GLuint vao_In_Circle;
+    GLuint vbo_In_Circle;
 
     GLuint mvpUniform;
     GLuint colorUniform;
@@ -515,10 +527,139 @@ main(int argc , const char *argv[])
 		NULL								// offset to start in above attrib position
 	);
 
-	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+    glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 
+    // circle
+    GLfloat fAngle = 0.0f;
+    float fCirclePositions[1000 * 3];
+    for (ind = 0; ind < 1000; ind++)
+    {
+        fAngle = 2.0f * M_PI * ind / 1000;
+        fCirclePositions[ind * 3] = cos(fAngle);
+        fCirclePositions[ind * 3 + 1] = sin(fAngle);
+        fCirclePositions[ind * 3 + 2] = 0.0f;
+    }
+
+    glGenVertexArrays(1, &vao_Circle);
+    glBindVertexArray(vao_Circle);
+    glGenBuffers(1, &vbo_Circle);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_Circle);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fCirclePositions), fCirclePositions, GL_STATIC_DRAW);
+    glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    //
+    // Rectangle
+    //
+    GLfloat fSide = sqrt(0.5f);
+    const GLfloat fArrayRectangle[] = {
+        fSide, fSide, 0.0f,
+        -fSide, fSide, 0.0f,
+
+        -fSide, fSide, 0.0f,
+        -fSide, -fSide, 0.0f,
+
+        -fSide, -fSide, 0.0f,
+        fSide, -fSide, 0.0f,
+
+        fSide, -fSide, 0.0f,
+        fSide, fSide, 0.0f
+    };
+
+    glGenVertexArrays(1, &vao_Rectangle);
+    glBindVertexArray(vao_Rectangle);
+    glGenBuffers(1, &vbo_Rectangle);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_Rectangle);
+    glBufferData(GL_ARRAY_BUFFER,
+        sizeof(fArrayRectangle),
+        fArrayRectangle,
+        GL_STATIC_DRAW);
+    glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    // Triangle for Incircle
+    // Side of Triangle - fSide 
+
+    // Calculating lengths of sides
+    GLfloat fx, fy, fTempfA, fTempfB, fDistA, fDistB, fDistC;
+
+    fx = fy = fSide;
+    fTempfA = -fx;
+    fTempfB = -2 * fy;
+    fDistA = sqrt(fTempfA*fTempfA + fTempfB * fTempfB);
+    fTempfA = 2 * fx;
+    fTempfB = 0.0f;
+    fDistB = sqrt(fTempfA*fTempfA + fTempfB * fTempfB);
+    fTempfA = -fx;
+    fTempfB = 2 * fy;
+    fDistC = sqrt(fTempfA * fTempfA + fTempfB * fTempfB);
+
+    const GLfloat fInTriangle[] = { 0.0f, fy, 0.0f,
+        -fx, -fy, 0.0f,
+        -fx, -fy, 0.0f,
+        fx, -fy, 0.0f,
+        fx, -fy, 0.0f,
+        0.0f, fy, 0.0f
+    };
+
+    glGenVertexArrays(1, &vao_Triangle);
+    glBindVertexArray(vao_Triangle);
+
+    glGenBuffers(1, &vbo_Triangle);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_Triangle);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fInTriangle), fInTriangle, GL_STATIC_DRAW);
+    glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    //
+    // In-Circle
+    // 
+    GLfloat fIncircleXCord, fIncircleYCord, fSemiPerimeter, fAreaSquare, fArea, fInRadius;
+
+    fIncircleXCord = ((fDistB) * 0.0f) + ((fDistC * (-fx)) + ((fDistA) * fx))
+                / (fDistA + fDistB + fDistC);
+
+    fIncircleYCord = (((fDistB) * fy) + (fDistC * (-fy)) + ((fDistA) * (-fy)))
+        / (fDistA + fDistB + fDistC);
+
+    fSemiPerimeter = (fDistA + fDistB + fDistC) / 2;
+
+    fAreaSquare = (fSemiPerimeter - fDistA)
+        * (fSemiPerimeter - fDistB)
+        * (fSemiPerimeter - fDistC) * fSemiPerimeter;
+
+    fArea = sqrt(fAreaSquare);
+    fInRadius = fArea / fSemiPerimeter;
+
+    ind = 0;
+    fAngle = 0.0f;
+    float fInCirclePositions[1000 * 3];
+    for (ind = 0; ind < 1000; ind++)
+    {
+        fAngle = 2.0f * M_PI * ind / 1000;
+        fInCirclePositions[ind * 3] = fInRadius * cos(fAngle) + fIncircleXCord;
+        fInCirclePositions[ind * 3 + 1] = fInRadius * sin(fAngle) + fIncircleYCord;
+        fInCirclePositions[ind * 3 + 2] = 0.0f;
+    }
+
+    glGenVertexArrays(1, &vao_In_Circle);
+    glBindVertexArray(vao_In_Circle);
+
+    glGenBuffers(1, &vbo_In_Circle);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_In_Circle);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fInCirclePositions), fInCirclePositions, GL_STATIC_DRAW);
+    glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
@@ -622,6 +763,53 @@ main(int argc , const char *argv[])
     glDrawArrays(GL_LINES, 22, 20);
     glBindVertexArray(0);
 
+
+    //
+    // Circle
+    //
+    modelViewMatrix = mat4::identity();
+    modelViewProjectionMatrix = mat4::identity();
+
+    modelViewMatrix = translate(0.0f, 0.0f, -3.0f);
+    modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
+
+    // uniforms are given to m_uv_matrix (i.e. model view matrix)
+    glUniformMatrix4fv(
+    	mvpUniform,
+    	1,			//	how many matrices
+    	GL_FALSE,	//	Transpose is needed ? ->
+    	modelViewProjectionMatrix
+    );
+    glUniform4f(colorUniform, 1.0f, 1.0f, 0.0f, 1.0f); // red + green = yellow
+
+    glBindVertexArray(vao_Circle);
+    glLineWidth(0.5f);
+    glDrawArrays(GL_LINE_LOOP, 0, 1000);
+    glBindVertexArray(0);
+
+    //
+    // Rectangle
+    //
+    glBindVertexArray(vao_Rectangle);
+    glLineWidth(1.5f);
+    glUniform4f(colorUniform, 1.0f, 1.0f, 0.0f, 1.0f); // red + green = yellow
+    glDrawArrays(GL_LINES, 0, 8);
+    glBindVertexArray(0);
+
+    //
+    // Triangle
+    //
+    glBindVertexArray(vao_Triangle);
+    glDrawArrays(GL_LINES, 0, 6);
+    glBindVertexArray(0);
+
+    //
+    // In-Circle
+    //
+    glBindVertexArray(vao_In_Circle);
+    glDrawArrays(GL_LINE_LOOP, 0, 1000);
+    glBindVertexArray(0);
+
     glUseProgram(0);
 
     CGLFlushDrawable((CGLContextObj)[[self openGLContext]CGLContextObj]);
@@ -676,6 +864,54 @@ main(int argc , const char *argv[])
 -(void) dealloc
 {
     // code
+    if(vbo_In_Circle)
+    {
+        glDeleteBuffers(1, &vbo_In_Circle);
+        vbo_In_Circle = 0;
+    }
+
+    if (vao_In_Circle)
+    {
+        glDeleteVertexArrays(1, &vao_In_Circle);
+        vao_In_Circle = 0;
+    }
+
+
+    if(vbo_Triangle)
+    {
+        glDeleteBuffers(1, &vbo_Triangle);
+        vbo_Triangle = 0;
+    }
+
+    if (vao_Triangle)
+    {
+        glDeleteVertexArrays(1, &vao_Triangle);
+        vao_Triangle = 0;
+    }
+
+    if(vbo_Rectangle)
+    {
+        glDeleteBuffers(1, &vbo_Rectangle);
+        vbo_Rectangle = 0;
+    }
+
+    if (vao_Rectangle)
+    {
+        glDeleteVertexArrays(1, &vao_Rectangle);
+        vao_Rectangle = 0;
+    }
+
+    if(vbo_Circle)
+    {
+        glDeleteBuffers(1, &vbo_Circle);
+        vbo_Circle = 0;
+    }
+
+    if (vao_Circle)
+    {
+        glDeleteVertexArrays(1, &vao_Circle);
+        vao_Circle = 0;
+    }
 
     if(vbo)
     {
@@ -692,13 +928,13 @@ main(int argc , const char *argv[])
     if(vbo_verticalLines)
     {
         glDeleteBuffers(1, &vbo_verticalLines);
-        vbo_verticalLines = 0;
+        vbo = 0;
     }
 
     if (vao_verticalLines)
     {
         glDeleteVertexArrays(1, &vao_verticalLines);
-        vao_verticalLines = 0;
+        vao = 0;
     }
 
     glDetachShader(shaderProgramObject, vertexShaderObject);
