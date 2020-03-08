@@ -44,6 +44,31 @@ main(int argc , const char *argv[])
     return (0);
 }
 
+int main(int argc, char * argv[]) {
+    int ret;
+	
+	NSString * appDelegateClassName;
+	
+    NSAutoreleasePool *pPool = [[NSAutoreleasePool alloc]init];
+	
+	appDelegateClassName = NSStringFromClass([AppDelegate class]);
+	ret = UIApplicationMain(argc, argv, nil, appDelegateClassName);
+	
+	[pPool release];
+	return ret;
+    
+    //NSApp = [UIApplication sharedApplication];
+    
+    [NSApp setDelegate:[[AppDelegate alloc]init]];
+    
+    //[pPool release];
+    
+    
+    //@autoreleasepool {
+        // Setup code that might create autoreleased objects goes here.
+      //}    
+}
+
 // interface implementations
 @implementation AppDelegate
 {

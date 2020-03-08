@@ -750,8 +750,8 @@ main(int argc , const char *argv[])
     //
     // Circle
     //
-    vmath::mat4 modelViewMatrix = vmath::mat4::identity();
-    vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
+    modelViewMatrix = vmath::mat4::identity();
+    modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewMatrix = vmath::translate(0.0f, 0.0f, -3.0f);
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
