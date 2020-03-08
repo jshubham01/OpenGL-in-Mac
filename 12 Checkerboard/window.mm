@@ -605,6 +605,7 @@ main(int argc , const char *argv[])
     glUniform1i(samplerUniform, 0);
     glBindVertexArray(vao_rectangle);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
     glBindVertexArray(0);
 
     glUseProgram(0);
