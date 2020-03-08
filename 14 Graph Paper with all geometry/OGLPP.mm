@@ -750,10 +750,10 @@ main(int argc , const char *argv[])
     //
     // Circle
     //
-    modelViewMatrix = mat4::identity();
-    modelViewProjectionMatrix = mat4::identity();
+    vmath::mat4 modelViewMatrix = vmath::mat4::identity();
+    vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
-    modelViewMatrix = translate(0.0f, 0.0f, -3.0f);
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -3.0f);
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
