@@ -725,90 +725,89 @@ main(int argc , const char *argv[])
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
-    glUniformMatrix4fv(
-            mvpUniform,
-            1,          //  how many matrices
-            GL_FALSE,   //  Transpose is needed ? ->
-            modelViewProjectionMatrix
-        );
+// uniforms are given to m_uv_matrix (i.e. model view matrix)
+	glUniformMatrix4fv(
+				mvpUniform,
+				1,			//	how many matrices
+				GL_FALSE,	//	Transpose is needed ? ->
+				modelViewProjectionMatrix
+			);
 
-    glUniform4f(colorUniform, 0.0f, 0.0f, 1.0f, 1.0f);
+	glUniform4f(colorUniform, 0.0f, 0.0f, 1.0f, 1.0f);
 
-    // bind with vow (this is avoiding many necessary binding with vbos)
-    glBindVertexArray(vao);
+	// bind with vow (this is avoiding many necessary binding with vbos)
+	glBindVertexArray(vao);
 
-    glLineWidth(0.5f);
-    glDrawArrays(GL_LINES,  0,  20);
+	glLineWidth(0.5f);
+	glDrawArrays(GL_LINES, 	0,	20);
 
-    glLineWidth(2.0f);
-    glUniform4f(colorUniform, 1.0f, 0.0f, 0.0f, 1.0f);
-    glDrawArrays(GL_LINES, 20, 2);
+	glLineWidth(2.0f);
+	glUniform4f(colorUniform, 1.0f, 0.0f, 0.0f, 1.0f);
+	glDrawArrays(GL_LINES, 20, 2);
 
-    glLineWidth(0.5f);
-    glUniform4f(colorUniform, 0.0f, 0.0f, 1.0f, 1.0f);
-    glDrawArrays(GL_LINES, 22, 20);
-    glBindVertexArray(0);
+	glLineWidth(0.5f);
+	glUniform4f(colorUniform, 0.0f, 0.0f, 1.0f, 1.0f);
+	glDrawArrays(GL_LINES, 22, 20);
+	glBindVertexArray(0);
+	
+	glBindVertexArray(vao_verticalLines);
+	glLineWidth(0.5f);
+	glDrawArrays(GL_LINES, 0, 20);
 
-    glBindVertexArray(vao_verticalLines);
+	glLineWidth(2.0f);
+	glUniform4f(colorUniform, 0.0f, 1.0f, 0.0f, 1.0f);
+	glDrawArrays(GL_LINES, 20, 2);
 
-    glLineWidth(0.5f);
-    glDrawArrays(GL_LINES, 0, 20);
+	glLineWidth(0.5f);
+	glUniform4f(colorUniform, 0.0f, 0.0f, 1.0f, 1.0f);
+	glDrawArrays(GL_LINES, 22, 20);
+	glBindVertexArray(0);
 
-    glLineWidth(2.0f);
-    glUniform4f(colorUniform, 0.0f, 1.0f, 0.0f, 1.0f);
-    glDrawArrays(GL_LINES, 20, 2);
+	//
+	// Circle
+	//
+	modelViewMatrix = mat4::identity();
+	modelViewProjectionMatrix = mat4::identity();
 
-    glLineWidth(0.5f);
-    glUniform4f(colorUniform, 0.0f, 0.0f, 1.0f, 1.0f);
-    glDrawArrays(GL_LINES, 22, 20);
-    glBindVertexArray(0);
+	modelViewMatrix = translate(0.0f, 0.0f, -3.0f);
+	modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
+	// uniforms are given to m_uv_matrix (i.e. model view matrix)
+	glUniformMatrix4fv(
+		mvpUniform,
+		1,			//	how many matrices
+		GL_FALSE,	//	Transpose is needed ? ->
+		modelViewProjectionMatrix
+	);
+	glUniform4f(colorUniform, 1.0f, 1.0f, 0.0f, 1.0f); // red + green = yellow
 
-    //
-    // Circle
-    //
-    modelViewMatrix = vmath::mat4::identity();
-    modelViewProjectionMatrix = vmath::mat4::identity();
+	glBindVertexArray(vao_Circle);
+	glLineWidth(0.5f);
+	glDrawArrays(GL_LINE_LOOP, 0, 1000);
+	glBindVertexArray(0);
 
-    modelViewMatrix = vmath::translate(0.0f, 0.0f, -3.0f);
-    modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
+	//
+	// Rectangle
+	//
+	glBindVertexArray(vao_Rectangle);
+	glLineWidth(1.5f);
+	glUniform4f(colorUniform, 1.0f, 1.0f, 0.0f, 1.0f); // red + green = yellow
+	glDrawArrays(GL_LINES, 0, 8);
+	glBindVertexArray(0);
 
-    // uniforms are given to m_uv_matrix (i.e. model view matrix)
-    glUniformMatrix4fv(
-    	mvpUniform,
-    	1,			//	how many matrices
-    	GL_FALSE,	//	Transpose is needed ? ->
-    	modelViewProjectionMatrix
-    );
-    glUniform4f(colorUniform, 1.0f, 1.0f, 0.0f, 1.0f); // red + green = yellow
+	//
+	// Triangle
+	//
+	glBindVertexArray(vao_Triangle);
+	glDrawArrays(GL_LINES, 0, 6);
+	glBindVertexArray(0);
 
-    glBindVertexArray(vao_Circle);
-    glLineWidth(0.5f);
-    glDrawArrays(GL_LINE_LOOP, 0, 1000);
-    glBindVertexArray(0);
-
-    //
-    // Rectangle
-    //
-    glBindVertexArray(vao_Rectangle);
-    glLineWidth(1.5f);
-    glUniform4f(colorUniform, 1.0f, 1.0f, 0.0f, 1.0f); // red + green = yellow
-    glDrawArrays(GL_LINES, 0, 8);
-    glBindVertexArray(0);
-
-    //
-    // Triangle
-    //
-    glBindVertexArray(vao_Triangle);
-    glDrawArrays(GL_LINES, 0, 6);
-    glBindVertexArray(0);
-
-    //
-    // In-Circle
-    //
-    glBindVertexArray(vao_In_Circle);
-    glDrawArrays(GL_LINE_LOOP, 0, 1000);
-    glBindVertexArray(0);
+	//
+	// In-Circle
+	//
+	glBindVertexArray(vao_In_Circle);
+	glDrawArrays(GL_LINE_LOOP, 0, 1000);
+	glBindVertexArray(0);
 
     glUseProgram(0);
 
