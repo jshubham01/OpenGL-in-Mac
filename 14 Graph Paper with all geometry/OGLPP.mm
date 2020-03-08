@@ -747,6 +747,29 @@ main(int argc , const char *argv[])
     glDrawArrays(GL_LINES, 22, 20);
     glBindVertexArray(0);
 
+    //
+    // Circle
+    //
+    modelViewMatrix = mat4::identity();
+    modelViewProjectionMatrix = mat4::identity();
+
+    modelViewMatrix = translate(0.0f, 0.0f, -3.0f);
+    modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
+
+    // uniforms are given to m_uv_matrix (i.e. model view matrix)
+    glUniformMatrix4fv(
+        mvpUniform,
+        1,			//	how many matrices
+        GL_FALSE,	//	Transpose is needed ? ->
+        modelViewProjectionMatrix
+    );
+    glUniform4f(colorUniform, 1.0f, 1.0f, 0.0f, 1.0f); // red + green = yellow
+
+    glBindVertexArray(vao_Circle);
+    glLineWidth(0.5f);
+    glDrawArrays(GL_LINE_LOOP, 0, 1000);
+    glBindVertexArray(0);
+
     glUseProgram(0);
 
     CGLFlushDrawable((CGLContextObj)[[self openGLContext]CGLContextObj]);
