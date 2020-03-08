@@ -484,8 +484,8 @@ main(int argc , const char *argv[])
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
     glTexImage2D(GL_TEXTURE_2D,  0,
-        GL_RGBA, CHECK_IMAGE_WEIGHT, 
-        CHECK_IMAGE_HEIGHT, 0,
+        GL_RGBA, 64, 
+        64, 0,
         GL_RGBA, GL_UNSIGNED_BYTE,
         g_checkImage);
 
@@ -497,9 +497,9 @@ main(int argc , const char *argv[])
     int j;
     int c;
 
-    for (i = 0; i < CHECK_IMAGE_HEIGHT; i++)
+    for (i = 0; i < 64; i++)
     {
-        for (j = 0; j < CHECK_IMAGE_WEIGHT; j++)
+        for (j = 0; j < 64; j++)
         {
             c = (((i & 0x8) == 0) ^ ((j & 0x8) == 0));
             c = c * 255;
