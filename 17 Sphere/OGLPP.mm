@@ -398,10 +398,9 @@ main(int argc , const char *argv[])
     );
 
 
-    int slices = 60;
-    int stacks = 60;
-    [self mySphereWithRadius:60 slices:slices stacks:stacks];
-    //mySphereWithRadius(0.6f, slices, stacks);
+    int slices = 50;
+    int stacks = 50;
+    [self mySphereWithRadius:1.6 slices:slices stacks:stacks];
     //mySphereWithRadius(0.6f, slices, stacks);
     int vertexCount = (slices + 1) * (stacks + 1);
 
@@ -555,7 +554,7 @@ main(int argc , const char *argv[])
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
     rotateMatrix = vmath::rotate(90.0f, 1.0f, 0.0f, 0.0f);
-    modelViewMatrix = vmath::translate(0.0f, 0.0f, -3.0f);
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
     modelViewMatrix = modelViewMatrix * rotateMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
