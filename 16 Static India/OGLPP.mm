@@ -499,6 +499,73 @@ main(int argc , const char *argv[])
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
+	const GLfloat fN_PositionArray[] = {fOffForN + fLetterWidth, 1.31, 0.0f, fOffForN, 1.31,  0.0f,
+		fOffForN, -1.31, 0.0f, fOffForN + fLetterWidth, -1.31, 0.0f, fOffForN + 3 * fLetterWidth, -1.31, 0.0f,
+		fOffForN + fLetterWidth, 1.31, 0.0f, fOffForN, 1.31, 0.0f, fOffForN + 2 * fLetterWidth, -1.31, 0.0f,
+		fOffForN + 3 * fLetterWidth, 1.31, 0.0f, fOffForN + 2 * fLetterWidth, 1.31, 0.0f,
+		fOffForN + 2 * fLetterWidth, -1.31, 0.0f, fOffForN + 3 * fLetterWidth, -1.31, 0.0f
+	};
+
+	const GLfloat fN_ColorArray[] = {SAFFRON, SAFFRON, GREEN,
+		GREEN, GREEN, SAFFRON,
+		SAFFRON, GREEN, SAFFRON,
+		SAFFRON, GREEN, GREEN};
+
+	glGenVertexArrays(1, &vao_N);
+	glBindVertexArray(vao_N);
+
+	glGenBuffers(1, &vbo_N_Position);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_N_Position);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fN_PositionArray), fN_PositionArray, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glGenBuffers(1, &vbo_N_Color);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_N_Color);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fN_ColorArray), fN_ColorArray, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glBindVertexArray(0);
+
+    const GLfloat fN_PositionArray[] = {fOffForN + fLetterWidth, 1.31, 0.0f, fOffForN, 1.31,  0.0f,
+    	fOffForN, -1.31, 0.0f, fOffForN + fLetterWidth, -1.31, 0.0f, fOffForN + 3 * fLetterWidth, -1.31, 0.0f,
+    	fOffForN + fLetterWidth, 1.31, 0.0f, fOffForN, 1.31, 0.0f, fOffForN + 2 * fLetterWidth, -1.31, 0.0f,
+    	fOffForN + 3 * fLetterWidth, 1.31, 0.0f, fOffForN + 2 * fLetterWidth, 1.31, 0.0f,
+    	fOffForN + 2 * fLetterWidth, -1.31, 0.0f, fOffForN + 3 * fLetterWidth, -1.31, 0.0f
+    };
+
+    const GLfloat fN_ColorArray[] = 
+    {
+        SAFFRON, SAFFRON, GREEN,
+        GREEN, GREEN, SAFFRON,
+        SAFFRON, GREEN, SAFFRON,
+        SAFFRON, GREEN, GREEN
+    };
+
+    glGenVertexArrays(1, &vao_N);
+    glBindVertexArray(vao_N);
+
+    glGenBuffers(1, &vbo_N_Position);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_N_Position);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fN_PositionArray), fN_PositionArray, GL_STATIC_DRAW);
+    glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glGenBuffers(1, &vbo_N_Color);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_N_Color);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fN_ColorArray), fN_ColorArray, GL_STATIC_DRAW);
+    glVertexAttribPointer(AMC_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glBindVertexArray(0);
+
+
+
 
 
     glEnable(GL_DEPTH_TEST);
@@ -560,17 +627,29 @@ main(int argc , const char *argv[])
     vmath::mat4 modelViewMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
-    modelViewMatrix = vmath::translate(0.0f, 0.0f, -3.0f);
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
     glUniformMatrix4fv(mvpUniform, 1, GL_FALSE,  modelViewProjectionMatrix);
 
-
 	glBindVertexArray(vao_I);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	glBindVertexArray(0);
 
+    modelViewMatrix = vmath::mat4::identity();
+    modelViewProjectionMatrix = vmath::mat4::identity();
+
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
+    modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
+
+    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE,  modelViewProjectionMatrix);
+
+    glBindVertexArray(vao_N);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 8, 4);
+    glBindVertexArray(0);
 
     glUseProgram(0);
 
