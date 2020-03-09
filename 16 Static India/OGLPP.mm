@@ -7,11 +7,12 @@ Abstract:
     Ortho Triangle
 
 Revision History:
-    Date:	Dec 18, 2019.
-    Desc:	Started
+    Date:   Dec 18, 2019.
+    Desc:   Started
 
-    Date:	Dec 18, 2019.
-    Desc:	Done
+    Date:   Dec 18, 2019.
+    Desc:   Done
+
 */
 
 #import <Foundation/Foundation.h>
@@ -545,6 +546,7 @@ main(int argc , const char *argv[])
 
 	glBindVertexArray(0);
 
+    /*
 	// 	fOffX, Yoff, fWidth, fHeight
 	// fOffForN, 1.31, fLetterWidth, -1.31
 	const GLfloat fN_PositionArray[] = 
@@ -609,14 +611,15 @@ main(int argc , const char *argv[])
     );
     glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
+    glBindVertexArray(0); 
+
+    */
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glEnable(GL_CULL_FACE);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClearDepth(1.0f);
-
     // set projection  Matrix
     perspectiveProjectionMatrix = vmath::mat4::identity();
 
