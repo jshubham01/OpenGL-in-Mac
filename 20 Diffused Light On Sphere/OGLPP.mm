@@ -696,7 +696,7 @@ main(int argc , const char *argv[])
         case 'L':
             if (true == boKeyOfLightsIsPressed)
             {
-            boKeyOfLightsIsPressed = true;
+                boKeyOfLightsIsPressed = false;
             }
             else
             {
