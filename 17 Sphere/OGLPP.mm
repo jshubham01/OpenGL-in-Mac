@@ -400,7 +400,9 @@ main(int argc , const char *argv[])
 
     int slices = 60;
     int stacks = 60;
-    mySphereWithRadius(0.6f, slices, stacks);
+    [self mySphereWithRadius:60 slices:slices stacks:stacks];
+    //mySphereWithRadius(0.6f, slices, stacks);
+    //mySphereWithRadius(0.6f, slices, stacks);
     int vertexCount = (slices + 1) * (stacks + 1);
 
     glGenVertexArrays(1, &vao_sphere);
