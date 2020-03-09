@@ -178,14 +178,17 @@ main(int argc , const char *argv[])
 
     vmath:: mat4 perspectiveProjectionMatrix;
 
-    bool boKeyOfLightsIsPressed = false;
-    GLfloat fangleCube = 0.0f;
+    bool boKeyOfLightsIsPressed;
+    GLfloat fangleCube;
 }
 
 -(id)initWithFrame:(NSRect)frame;
 {
     // code
     self = [super initWithFrame:frame];
+
+    fangleCube = 0.0f;
+    boKeyOfLightsIsPressed = false;
 
     if(self)
     {
