@@ -547,40 +547,115 @@ main(int argc , const char *argv[])
 
 	glBindVertexArray(0);
 
-    const GLfloat fN_PositionArray[] = {fOffForN + fLetterWidth, 1.31, 0.0f, fOffForN, 1.31,  0.0f,
-    	fOffForN, -1.31, 0.0f, fOffForN + fLetterWidth, -1.31, 0.0f, fOffForN + 3 * fLetterWidth, -1.31, 0.0f,
-    	fOffForN + fLetterWidth, 1.31, 0.0f, fOffForN, 1.31, 0.0f, fOffForN + 2 * fLetterWidth, -1.31, 0.0f,
-    	fOffForN + 3 * fLetterWidth, 1.31, 0.0f, fOffForN + 2 * fLetterWidth, 1.31, 0.0f,
-    	fOffForN + 2 * fLetterWidth, -1.31, 0.0f, fOffForN + 3 * fLetterWidth, -1.31, 0.0f
-    };
+const GLfloat fD_PositionArray[] = {
+		fOffForD + fLetterWidth + fLetterWidth / 2, Yoff, 0.0f,
+		fOffForD + fLetterWidth / 2, Yoff, 0.0f,
+		fOffForD + fLetterWidth / 2, fHeight, 0.0f,
+		fOffForD + fLetterWidth + fLetterWidth / 2, fHeight, 0.0f,
+		fOffForD + 3 * fLetterWidth, Yoff, 0.0f,
+		fOffForD, Yoff, 0.0f,
+		fOffForD, Yoff - fLetterWidth, 0.0f,
+		fOffForD + 3 * fLetterWidth, Yoff - fLetterWidth, 0.0f,
+		fOffForD + 3 * fLetterWidth, Yoff, 0.0f,
+		fOffForD + 2 * fLetterWidth, Yoff, 0.0f,
+		fOffForD + 2 * fLetterWidth, fHeight, 0.0f,
+		fOffForD + 3 * fLetterWidth, fHeight, 0.0f,
+		fOffForD + 3 * fLetterWidth, fHeight + fLetterWidth, 0.0f,
+		fOffForD, fHeight + fLetterWidth, 0.0f,
+		fOffForD, fHeight, 0.0f,
+		fOffForD + 3 * fLetterWidth, fHeight, 0.0f
+	};
 
-    const GLfloat fN_ColorArray[] = 
-    {
-        SAFFRON, SAFFRON, GREEN,
-        GREEN, GREEN, SAFFRON,
-        SAFFRON, GREEN, SAFFRON,
-        SAFFRON, GREEN, GREEN
-    };
+	const GLfloat fD_ColorArray[] = {
+		SAFFRON, SAFFRON, GREEN, GREEN,
+		SAFFRON, SAFFRON, SAFFRON, SAFFRON,
+		SAFFRON, SAFFRON,GREEN, GREEN,
+		GREEN, GREEN, GREEN, GREEN
+	};
 
-    glGenVertexArrays(1, &vao_N);
-    glBindVertexArray(vao_N);
+	glGenVertexArrays(1, &vao_D);
+	glBindVertexArray(vao_D);
 
-    glGenBuffers(1, &vbo_N_Position);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_N_Position);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(fN_PositionArray), fN_PositionArray, GL_STATIC_DRAW);
-    glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-    glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glGenBuffers(1, &vbo_D_Position);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_D_Position);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fD_PositionArray), fD_PositionArray, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-    glGenBuffers(1, &vbo_N_Color);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_N_Color);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(fN_ColorArray), fN_ColorArray, GL_STATIC_DRAW);
-    glVertexAttribPointer(AMC_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-    glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glGenBuffers(1, &vbo_D_Color);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_D_Color);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fD_ColorArray), fD_ColorArray, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-    glBindVertexArray(0);
+	glBindVertexArray(0);
 
+	const GLfloat fLineI2Array[] =
+	{
+		fOffI2 + fLetterWidth + fWidth,Yoff, 0.0f,
+		fOffI2 + fLetterWidth , Yoff, 0.0f,
+		fOffI2 + fLetterWidth , fHeight, 0.0f,
+		fOffI2 + fLetterWidth + fWidth, fHeight, 0.0f
+	};
+
+	const GLfloat fColor_I2_Array[] =
+	{SAFFRON, SAFFRON, GREEN, GREEN};
+
+	glGenVertexArrays(1, &vao_I2);
+	glBindVertexArray(vao_I2);
+
+	glGenBuffers(1, &vbo_I2_Position);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_I2_Position);
+	glBufferData(GL_ARRAY_BUFFER,
+		sizeof(fLineI2Array),
+		fLineI2Array,
+		GL_STATIC_DRAW);
+
+	glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glGenBuffers(1, &vbo_I2_Color);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_I2_Color);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fColor_I2_Array), fColor_I2_Array, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	const GLfloat A_Position[] = {
+		//1.563 + 2 * fLetterWidth + (fLetterWidth / 2), Yoff, 0.0f,
+		1.163 + 2 * fLetterWidth + (fLetterWidth / 2), Yoff, 0.0f,
+		1.163 + 2 * fLetterWidth - (fLetterWidth / 2), Yoff, 0.0f,
+		1.163, fHeight, 0.0f,
+		1.163 + fLetterWidth, fHeight, 0.0f,
+		1.163 + 4 * fLetterWidth, fHeight, 0.0f,
+		1.163 + 2 * fLetterWidth + (fLetterWidth / 2), Yoff, 0.0f,
+		1.163 + 2 * fLetterWidth - (fLetterWidth / 2), Yoff, 0.0f,
+		1.163 + 3 * fLetterWidth, fHeight, 0.0f
+	};
+
+	const GLfloat A_Color[] = {SAFFRON, SAFFRON, GREEN, GREEN,
+		GREEN, SAFFRON, SAFFRON, GREEN};
+
+	glGenVertexArrays(1, &vao_A);
+	glBindVertexArray(vao_A);
+
+	glGenBuffers(1, &vbo_A_Position);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_A_Position);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(A_Position), A_Position, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glGenBuffers(1, &vbo_A_Color);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_A_Color);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(A_Color), A_Color, GL_STATIC_DRAW);
+	glVertexAttribPointer(AMC_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, 	NULL);
+	glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 
 
@@ -667,6 +742,44 @@ main(int argc , const char *argv[])
     glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
     glDrawArrays(GL_TRIANGLE_FAN, 8, 4);
     glBindVertexArray(0);
+
+    // DRAWING LETTER 'D' 
+	modelViewMatrix = mat4::identity();
+	modelViewProjectionMatrix = mat4::identity();
+	modelViewMatrix = translate(0.0f, 0.0f, -5.0f);
+	modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
+	glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
+
+	glBindVertexArray(vao_D);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 8, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 12, 4);
+	glBindVertexArray(0);
+
+	// LETTER I 2nd TIME
+	modelViewMatrix = mat4::identity();
+	modelViewProjectionMatrix = mat4::identity();
+	modelViewMatrix = translate(0.0f, 0.0f, -5.0f);
+	modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
+	glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
+
+	glBindVertexArray(vao_I2);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	glBindVertexArray(0);
+
+	// DRAWING LETTER 'A'
+	modelViewMatrix = mat4::identity();
+	modelViewProjectionMatrix = mat4::identity();
+	modelViewMatrix = translate(0.0f, 0.0f, -5.0f);
+	modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
+
+	// uniforms are given to m_uv_matrix (i.e. model view matrix)
+	glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
+	glBindVertexArray(vao_A);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
+	glBindVertexArray(0);
 
     glUseProgram(0);
 
