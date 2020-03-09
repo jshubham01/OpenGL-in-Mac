@@ -43,6 +43,13 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef,
 
 FILE *gpFile = NULL;
 
+
+GLfloat fOne = -3.0f;
+GLfloat fTwo = -1.5f;
+GLfloat fOne_1 = -3.0f;
+GLfloat fTwo_2 = -1.5f;
+bool boFlagForSync = false;
+
 /////////////////////////////////////////////////////////////////////
 //	I N T E R F A C E  D E C L A R A T I O N S
 /////////////////////////////////////////////////////////////////////
@@ -172,6 +179,8 @@ main(int argc , const char *argv[])
 
     GLuint mvpUniform;
     GLuint colorUniform;
+
+    GLfloat fAngleCloak = 0.0f;
 
     vmath:: mat4 perspectiveProjectionMatrix;
 }
@@ -487,7 +496,6 @@ main(int argc , const char *argv[])
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
-
     //
     // In-Circle
     //
@@ -578,16 +586,6 @@ main(int argc , const char *argv[])
 - (void)drawView
 {
     // Declaration of matrices
-
-    static GLfloat fOne = -3.0f;
-    static GLfloat fTwo = -1.5f;
-
-    static GLfloat fOne_1 = -3.0f;
-    static GLfloat fTwo_2 = -1.5f;
-
-    static bool boFlagForSync = false;
-    static GLfloat fAngleCloak = 0.0f;
-
     // code
     [[self openGLContext]makeCurrentContext];
 
