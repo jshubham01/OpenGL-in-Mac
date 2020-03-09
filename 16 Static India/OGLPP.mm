@@ -167,6 +167,23 @@ main(int argc , const char *argv[])
     GLuint vbo_I_Position;
     GLuint vbo_I_Color;
 
+    GLuint vao_N;
+    GLuint vbo_N_Position;
+    GLuint vbo_N_Color;
+
+    GLuint vao_D;
+    GLuint vbo_D_Position;
+    GLuint vbo_D_Color;
+
+    GLuint vao_I2;
+    GLuint vbo_I2_Position;
+    GLuint vbo_I2_Color;
+
+    GLuint vao_A;
+    GLuint vbo_A_Position;
+    GLuint vbo_A_Color;
+
+
     GLuint mvpUniform;
     vmath:: mat4 perspectiveProjectionMatrix;
 }
@@ -705,6 +722,79 @@ main(int argc , const char *argv[])
 -(void) dealloc
 {
     // code
+
+    if(vbo_A_Color)
+    {
+        glDeleteBuffers(1, &vbo_A_Color);
+        vbo_A_Color = 0;
+    }
+
+    if(vbo_A_Position)
+    {
+        glDeleteBuffers(1, &vbo_A_Position);
+        vbo_A_Position = 0;
+    }
+
+    if(vao_A)
+    {
+        glDeleteVertexArrays(1, &vao_A);
+        vao_A = 0;
+    }
+
+    if(vbo_I2_Color)
+    {
+        glDeleteBuffers(1, &vbo_I2_Color);
+        vbo_I2_Color = 0;
+    }
+
+    if(vbo_I2_Position)
+    {
+        glDeleteBuffers(1, &vbo_I2_Position);
+        vbo_I2_Position = 0;
+    }
+
+    if(vao_I2)
+    {
+        glDeleteVertexArrays(1, &vao_I2);
+        vao_I2 = 0;
+    }
+
+    if(vbo_D_Color)
+    {
+        glDeleteBuffers(1, &vbo_D_Color);
+        vbo_D_Color = 0;
+    }
+
+    if(vbo_D_Position)
+    {
+        glDeleteBuffers(1, &vbo_D_Position);
+        vbo_D_Position = 0;
+    }
+
+    if(vao_D)
+    {
+        glDeleteVertexArrays(1, &vao_D);
+        vao_D = 0;
+    }
+
+    if(vbo_N_Color)
+    {
+        glDeleteBuffers(1, &vbo_N_Color);
+        vbo_N_Color = 0;
+    }
+
+    if(vbo_N_Position)
+    {
+        glDeleteBuffers(1, &vbo_N_Position);
+        vbo_N_Position = 0;
+    }
+
+    if(vao_N)
+    {
+        glDeleteVertexArrays(1, &vao_N);
+        vao_N = 0;
+    }
+
     if(vbo_I_Color)
     {
         glDeleteBuffers(1, &vbo_I_Color);
