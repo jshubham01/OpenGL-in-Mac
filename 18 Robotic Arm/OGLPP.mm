@@ -561,61 +561,61 @@ main(int argc , const char *argv[])
     vmath::mat4 modelViewMatrix_1 = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
-    modelRotationMatrix = vmath::rotate(90.0f, 1.0f, 0.0f, 0.0f);
-    modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
-    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
-    modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
-
-    // uniforms are given to m_uv_matrix (i.e. model view matrix)
-    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
-
-    glBindVertexArray(vao_sphere);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
-    glDrawElements(GL_LINES, gNumElements, GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
-
-
-    // // base translation
-    // modelViewMatrix = vmath::translate(0.0f, 0.0f, -12.0f);
-
-    // // push
-    // modelRotationMatrix = vmath::mat4::identity();
-    // modelRotationMatrix = vmath::rotate(g_iShoulder, 0.0f, 0.0f, 1.0f);
+    // modelRotationMatrix = vmath::rotate(90.0f, 1.0f, 0.0f, 0.0f);
+    // modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
     // modelViewMatrix = modelViewMatrix * modelRotationMatrix;
-    // modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
-
-    // // push 02:18:06:16 - 
-    // scaleMatrix = vmath::scale(2.0f, 0.5f, 1.0f);
-    // modelViewMatrix = modelViewMatrix * scaleMatrix;
     // modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
+    // // uniforms are given to m_uv_matrix (i.e. model view matrix)
     // glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
+
     // glBindVertexArray(vao_sphere);
     // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
-    // glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_SHORT, 0);
+    // glDrawElements(GL_LINES, gNumElements, GL_UNSIGNED_INT, 0);
     // glBindVertexArray(0);
 
-    // //pop
-    // modelViewMatrix =  vmath::translate(0.0f, 0.0f, -12.0f);
 
-    // // push
-    // modelRotationMatrix =  vmath::rotate(g_iShoulder, 0.0f, 0.0f, 1.0f);
-    // modelViewMatrix = modelViewMatrix * modelRotationMatrix;
-    // modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
+    // base translation
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -12.0f);
 
-    // modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
-    // modelRotationMatrix = vmath::rotate(g_iElbow, 0.0f, 0.0f, 1.0f);
-    // modelViewMatrix = modelViewMatrix * modelRotationMatrix;
-    // modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
+    // push
+    modelRotationMatrix = vmath::mat4::identity();
+    modelRotationMatrix = vmath::rotate(g_iShoulder, 0.0f, 0.0f, 1.0f);
+    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
+    modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
 
-    // modelViewMatrix_1 = modelViewMatrix * scaleMatrix;
-    // modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix_1;
+    // push 02:18:06:16 - 
+    scaleMatrix = vmath::scale(2.0f, 0.5f, 1.0f);
+    modelViewMatrix = modelViewMatrix * scaleMatrix;
+    modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
-    // glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
-    // glBindVertexArray(vao_sphere);
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
-    // glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_SHORT, 0);
-    // glBindVertexArray(0);
+    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+
+    //pop
+    modelViewMatrix =  vmath::translate(0.0f, 0.0f, -12.0f);
+
+    // push
+    modelRotationMatrix =  vmath::rotate(g_iShoulder, 0.0f, 0.0f, 1.0f);
+    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
+    modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
+
+    modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
+    modelRotationMatrix = vmath::rotate(g_iElbow, 0.0f, 0.0f, 1.0f);
+    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
+    modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
+
+    modelViewMatrix_1 = modelViewMatrix * scaleMatrix;
+    modelViewProjectionMatrix = perspectiveProjecStionMatrix * modelViewMatrix_1;
+
+    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 
     glUseProgram(0);
     CGLFlushDrawable((CGLContextObj)[[self openGLContext]CGLContextObj]);
