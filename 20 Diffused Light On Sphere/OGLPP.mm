@@ -691,6 +691,20 @@ main(int argc , const char *argv[])
             //centralText = @"'F' or 'f' Key Is Pressed";
             [[self window]toggleFullScreen:self]; // repainting occurs
             break;
+        
+        case 'l':
+        case 'L':
+            if (TRUE == boKeyOfLightsIsPressed)
+            {
+            boKeyOfLightsIsPressed = FALSE;
+            }
+            else
+            {
+                boKeyOfLightsIsPressed = TRUE;
+            }
+
+            break;
+
 
         default:
             break;
