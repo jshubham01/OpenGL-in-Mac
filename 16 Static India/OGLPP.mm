@@ -744,9 +744,9 @@ const GLfloat fD_PositionArray[] = {
     glBindVertexArray(0);
 
     // DRAWING LETTER 'D' 
-	modelViewMatrix = mat4::identity();
-	modelViewProjectionMatrix = mat4::identity();
-	modelViewMatrix = translate(0.0f, 0.0f, -5.0f);
+	modelViewMatrix =  vmath::mat4::identity();
+	modelViewProjectionMatrix =  vmath::mat4::identity();
+	modelViewMatrix =  vmath::translate(0.0f, 0.0f, -5.0f);
 	modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 	glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
 
@@ -758,9 +758,9 @@ const GLfloat fD_PositionArray[] = {
 	glBindVertexArray(0);
 
 	// LETTER I 2nd TIME
-	modelViewMatrix = mat4::identity();
-	modelViewProjectionMatrix = mat4::identity();
-	modelViewMatrix = translate(0.0f, 0.0f, -5.0f);
+	modelViewMatrix =  vmath::mat4::identity();
+	modelViewProjectionMatrix =  vmath::mat4::identity();
+	modelViewMatrix =  vmath::translate(0.0f, 0.0f, -5.0f);
 	modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 	glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
 
@@ -769,9 +769,9 @@ const GLfloat fD_PositionArray[] = {
 	glBindVertexArray(0);
 
 	// DRAWING LETTER 'A'
-	modelViewMatrix = mat4::identity();
-	modelViewProjectionMatrix = mat4::identity();
-	modelViewMatrix = translate(0.0f, 0.0f, -5.0f);
+	modelViewMatrix =  vmath::mat4::identity();
+	modelViewProjectionMatrix =  vmath::mat4::identity();
+	modelViewMatrix =  vmath::translate(0.0f, 0.0f, -5.0f);
 	modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
 	// uniforms are given to m_uv_matrix (i.e. model view matrix)
