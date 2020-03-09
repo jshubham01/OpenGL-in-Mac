@@ -174,7 +174,7 @@ main(int argc , const char *argv[])
     GLuint kdUniform;
 
     GLuint lightPositionVectorUniform;
-    GLuint uiKeyOfLightsIsPressed;
+    GLuint uiKeyOfLightsIsPressedUniform;
 
     vmath:: mat4 perspectiveProjectionMatrix;
 
