@@ -472,66 +472,66 @@ main(int argc , const char *argv[])
     }
 
     uiModelMatrixUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_model_matrix"
     );
 
     uiViewMatrixUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_view_matrix"
     );
 
     uiProjectionUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_projection_matrix"
     );
 
     laUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_la"
     );
 
     ldUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_ld"
     );
 
     lsUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_ls"
     );
 
     lightPositionVectorUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_light_position"
     );
 
     kaUniform = glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_ka"
     );
 
     kdUniform = 
         glGetUniformLocation(
-            g_uiShaderProgramObject,
+            shaderProgramObject,
             "u_kd"
         );
 
     ksUniform = 
         glGetUniformLocation(
-            g_uiShaderProgramObject,
+            shaderProgramObject,
             "u_ks"
         );
 
     shineynessUniform = 
         glGetUniformLocation(
-        g_uiShaderProgramObject,
+        shaderProgramObject,
         "u_material_shiney_ness"
     );
 
     uiKeyOfLightsIsPressed =
         glGetUniformLocation(
-            g_uiShaderProgramObject,
+            shaderProgramObject,
             "ui_is_lighting_key_pressed"
         );
 
