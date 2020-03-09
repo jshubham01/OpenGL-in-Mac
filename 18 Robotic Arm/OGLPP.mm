@@ -558,6 +558,7 @@ main(int argc , const char *argv[])
     vmath::mat4 modelRotationMatrix = vmath::mat4::identity();
     vmath::mat4 scaleMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewMatrix = vmath::mat4::identity();
+    vmath::mat4 modelViewMatrix_1 = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
     // base translation
