@@ -7,12 +7,11 @@ Abstract:
     Ortho Triangle
 
 Revision History:
-    Date:   Dec 18, 2019.
-    Desc:   Started
+    Date:	Dec 18, 2019.
+    Desc:	Started
 
-    Date:   Dec 18, 2019.
-    Desc:   Done
-
+    Date:	Dec 18, 2019.
+    Desc:	Done
 */
 
 #import <Foundation/Foundation.h>
@@ -26,6 +25,9 @@ Revision History:
 // Global Variables declarations and initializations
 /////////////////////////////////////////////////////
 
+#define SAFFRON 1.0f, (153.0f / 256.0f), (51.0f / 256.0f)
+#define GREEN (18.0f / 256.0f), (136.0f / 256.0f), (7.0f / 256.0f)
+
 enum
 {
     AMC_ATTRIBUTE_POSITION = 0,
@@ -33,9 +35,6 @@ enum
     AMC_ATTRIBUTE_NORMAL,
     AMC_ATTRIBUTE_TEXTURE0
 };
-
-#define SAFFRON 1.0f, (153.0f / 256.0f), (51.0f / 256.0f)
-#define GREEN (18.0f / 256.0f), (136.0f / 256.0f), (7.0f / 256.0f)
 
 // 'C' Style global function declaration
 CVReturn MyDisplayLinkCallback(CVDisplayLinkRef,
@@ -164,28 +163,11 @@ main(int argc , const char *argv[])
     GLuint fragmentShaderObject;
     GLuint shaderProgramObject;
 
-    GLuint vao_I; // vertex array object
+    GLuint vao_I;
     GLuint vbo_I_Position;
     GLuint vbo_I_Color;
 
-    GLuint vao_N;
-    GLuint vbo_N_Position;
-    GLuint vbo_N_Color;
-
-    GLuint vao_D;
-    GLuint vbo_D_Position;
-    GLuint vbo_D_Color;
-
-    GLuint vao_I2;
-    GLuint vbo_I2_Position;
-    GLuint vbo_I2_Color;
-
-    GLuint vao_A;
-    GLuint vbo_A_Position;
-    GLuint vbo_A_Color;
-
     GLuint mvpUniform;
-
     vmath:: mat4 perspectiveProjectionMatrix;
 }
 
@@ -265,16 +247,13 @@ main(int argc , const char *argv[])
     const GLchar *vertexShaderSourceCode =
         "#version 410 core" \
         "\n" \
-
         "in vec4 vPosition;" \
         "in vec4 vColor;" \
-        "out vec4 voutColor;" \
-
         "uniform mat4 u_mvp_matrix;" \
         "void main(void)" \
         "{" \
-            "gl_Position = u_mvp_matrix * vPosition;" \
-            "voutColor = vColor;" \
+        "gl_Position = u_mvp_matrix * vPosition;" \
+        "voutColor = vColor;" \
         "}";
 
     // specify above code of shader to vertext shader object
@@ -332,7 +311,7 @@ main(int argc , const char *argv[])
     const GLchar *pcFragmentShaderSourceCode = 
     "#version 410 core" \
     "\n" \
-    "in vec4 voutColor;"
+    "in vec4 voutColor;" \
     "out vec4 vFragColor;" \
     "void main(void)" \
     "{" \
@@ -395,9 +374,7 @@ main(int argc , const char *argv[])
         AMC_ATTRIBUTE_POSITION,
         "vPosition");
 
-    glBindAttribLocation(shaderProgramObject,
-        AMC_ATTRIBUTE_POSITION,
-        "vColor");
+    glBindAttribLocation(shaderProgramObject, AMC_ATTRIBUTE_COLOR, "vColor");
 
     // link the shader
     glLinkProgram(shaderProgramObject);
@@ -438,8 +415,9 @@ main(int argc , const char *argv[])
         "u_mvp_matrix"
     );
 
-    GLfloat fOffN;				// letter N starts at this X pos 
-    GLfloat fOffD;				// letter D starts at this X pos
+
+    GLfloat fOffN;
+    GLfloat fOffD;
     GLfloat fOffA;
     GLfloat fOffI2;
     GLfloat fOffI1;
@@ -457,10 +435,10 @@ main(int argc , const char *argv[])
     GLfloat fLetterWidth;
 
     const GLfloat cfHeight = 4.1f;
+    //const GLfloat cfWidth = 7.4f;
     const GLfloat cfWidth = 7.4f;
 
     // Drawing Letter I
-
     fWidthH = cfWidth / 2;
     fHeightH = cfHeight / 2;
     fwSpace = 15 * cfWidth / 100;
@@ -469,157 +447,65 @@ main(int argc , const char *argv[])
     GLfloat Yoff;
     GLfloat fTemp;
     GLfloat fHeight;
-    GLfloat fLetterSpace;		// like between I and N with space between them
+    GLfloat fLetterSpace;
 
     fTemp = (fWidthH - fwSpace) - (-(fWidthH - fwSpace));
-    fLetterSpace = fTemp / 5;
-
+    //fLetterSpace = fTemp / 5;
+    fLetterSpace = fTemp / 6;
     fOffI1 = -(fWidthH - fwSpace);
     fOffN = fOffI1 + fLetterSpace;
     fOffD = fOffN + fLetterSpace;
     fOffI2 = fOffD + fLetterSpace;
     fOffA = fOffI2 + fLetterSpace;
+    fLetterWidth = fLetterSpace / 4;
+    // fOffForN = fOffI1 + fLetterSpace;
+    fOffForN = fOffI1 + fLetterSpace + 0.35f; // this 0.35 came after changing following fOffX
+    fOffForD = fOffForN + fLetterSpace;
+    fOffI2 = fOffForD + fLetterSpace;
+    fOffForA = fOffI2 + fLetterSpace;
 
-	fLetterWidth = fLetterSpace / 4;
+    //GLfloat fOffX = -2.35;
+    GLfloat fOffX = -2.0;
+    Yoff = fHeightH - fhSpace;
+    GLfloat fWidth = fLetterWidth;
+    fHeight = -(fHeightH - fhSpace);
 
-	fOffForN = fOffI1 + fLetterSpace;
-	fOffForD = fOffForN + fLetterSpace;
-	fOffI2 = fOffForD + fLetterSpace;
-	fOffForA = fOffI2 + fLetterSpace;
-
-	GLfloat fOffX = -2.35;
-	Yoff = fHeightH - fhSpace;
-	GLfloat fWidth = fLetterWidth;
-	fHeight = -(fHeightH - fhSpace);
-
-	const GLfloat fLineArray[] =
-	{
-		fOffX + fWidth,Yoff, 0.0f,
-		fOffX, Yoff, 0.0f,
-		fOffX, fHeight, 0.0f,
-		fOffX + fWidth, fHeight, 0.0f
-	};
-
-	glGenVertexArrays(1, &vao_I);
-	glBindVertexArray(vao_I);
-
-	glGenBuffers(1, &vbo_I_Position);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_I_Position);
-	glBufferData(GL_ARRAY_BUFFER,
-		sizeof(fLineArray),
-		fLineArray,
-		GL_STATIC_DRAW);
-
-	glVertexAttribPointer(
-		AMC_ATTRIBUTE_POSITION,
-		3,									// how many co-ordinates in vertice
-		GL_FLOAT,							// type of above data
-		GL_FALSE,							// no normalization is desired
-		0,									// (dangha)
-		NULL								// offset to start in above attrib position
-	);
-
-	glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	const GLfloat fColorIArray[] = {
-			SAFFRON,
-			SAFFRON,
-			GREEN,
-			GREEN
-	};
-
-	glGenBuffers(1, &vbo_I_Color);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_I_Color);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(fColorIArray), fColorIArray, GL_STATIC_DRAW);
-	glVertexAttribPointer(
-		AMC_ATTRIBUTE_COLOR,
-		3,									// how many co-ordinates in vertice
-		GL_FLOAT,							// type of above data
-		GL_FALSE,							// no normalization is desired
-		0,									// (dangha)
-		NULL								// offset to start in above attrib position
-	);
-
-	glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	glBindVertexArray(0);
-
-    /*
-	// 	fOffX, Yoff, fWidth, fHeight
-	// fOffForN, 1.31, fLetterWidth, -1.31
-	const GLfloat fN_PositionArray[] = 
+    const GLfloat fLineArray[] =
     {
-        fOffForN + fLetterWidth, 1.31, 0.0f,
-        fOffForN, 1.31,  0.0f,
-        fOffForN, -1.31, 0.0f,
-        fOffForN + fLetterWidth, -1.31, 0.0f,
-
-        fOffForN + 3 * fLetterWidth, -1.31, 0.0f,
-        fOffForN + fLetterWidth, 1.31, 0.0f,
-        fOffForN, 1.31, 0.0f,
-        fOffForN + 2 * fLetterWidth, -1.31, 0.0f,
-
-        fOffForN + 3 * fLetterWidth, 1.31, 0.0f,
-        fOffForN + 2 * fLetterWidth, 1.31, 0.0f,
-        fOffForN + 2 * fLetterWidth, -1.31, 0.0f,
-        fOffForN + 3 * fLetterWidth, -1.31, 0.0f
+        fOffX + fWidth,Yoff, 0.0f,
+        fOffX, Yoff, 0.0f,
+        fOffX, fHeight, 0.0f,
+        fOffX + fWidth, fHeight, 0.0f
     };
 
-    const GLfloat fN_ColorArray[] = 
-    {
-        SAFFRON,
-        SAFFRON,
+    glGenVertexArrays(1, &vao_I);
+    glBindVertexArray(vao_I);
 
-        GREEN,
-        GREEN,
-
-        GREEN,
-        SAFFRON,
-
-        SAFFRON,
-        GREEN,
-
-        SAFFRON,
-        SAFFRON,
-
-        GREEN,
-        GREEN
-    };
-
-    glGenVertexArrays(1, &vao_N);
-    glBindVertexArray(vao_N);
-
-    glGenBuffers(1, &vbo_N_Position);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_N_Position);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(fN_PositionArray), fN_PositionArray, GL_STATIC_DRAW);
+    glGenBuffers(1, &vbo_I_Position);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_I_Position);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fLineArray), fLineArray, GL_STATIC_DRAW);
     glVertexAttribPointer(AMC_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(AMC_ATTRIBUTE_POSITION);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-    glGenBuffers(1, &vbo_N_Color);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo_N_Color);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(fN_ColorArray), fN_ColorArray, GL_STATIC_DRAW);
-    glVertexAttribPointer(
-        AMC_ATTRIBUTE_COLOR,
-        3,
-        GL_FLOAT,
-        GL_FALSE,
-        0,
-        NULL
-    );
+    const GLfloat fColorIArray[] = {SAFFRON,  SAFFRON, GREEN, GREEN};
+
+    glGenBuffers(1, &vbo_I_Color);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo_I_Color);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fColorIArray), fColorIArray, GL_STATIC_DRAW);
+    glVertexAttribPointer(AMC_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(AMC_ATTRIBUTE_COLOR);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0); 
+    glBindVertexArray(0);
 
-    */
+
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glEnable(GL_CULL_FACE);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClearDepth(1.0f);
+
     // set projection  Matrix
     perspectiveProjectionMatrix = vmath::mat4::identity();
 
@@ -670,24 +556,19 @@ main(int argc , const char *argv[])
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(shaderProgramObject);
 
-    // initialize above matrices to identity
     vmath::mat4 modelViewMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
-    modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -3.0f);
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
-    glUniformMatrix4fv(
-            mvpUniform,
-            1,			//	how many matrices
-            GL_FALSE,	//	Transpose is needed ? ->
-            modelViewProjectionMatrix
-        );
+    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE,  modelViewProjectionMatrix);
 
-    glBindVertexArray(vao_I);
-    glDrawArrays(GL_TRIANGLE_FAN,  0, 4);
-    glBindVertexArray(0);
+
+	glBindVertexArray(vao_I);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	glBindVertexArray(0);
 
 
     glUseProgram(0);
@@ -716,7 +597,8 @@ main(int argc , const char *argv[])
 
         case 'F':
         case 'f':
-            [[self window]toggleFullScreen:self];
+            //centralText = @"'F' or 'f' Key Is Pressed";
+            [[self window]toggleFullScreen:self]; // repainting occurs
             break;
 
         default:
@@ -743,78 +625,6 @@ main(int argc , const char *argv[])
 -(void) dealloc
 {
     // code
-    if(vbo_I2_Color)
-    {
-        glDeleteBuffers(1, &vbo_I2_Color);
-        vbo_I2_Color = 0;
-    }
-
-    if(vbo_I2_Position)
-    {
-        glDeleteBuffers(1, &vbo_I2_Position);
-        vbo_I2_Position = 0;
-    }
-
-    if (vao_I2)
-    {
-        glDeleteVertexArrays(1, &vao_I2);
-        vao_I2 = 0;
-    }
-
-    if(vbo_A_Color)
-    {
-        glDeleteBuffers(1, &vbo_A_Color);
-        vbo_A_Color = 0;
-    }
-
-    if(vbo_A_Position)
-    {
-        glDeleteBuffers(1, &vbo_A_Position);
-        vbo_A_Position = 0;
-    }
-
-    if (vao_A)
-    {
-        glDeleteVertexArrays(1, &vao_A);
-        vao_A = 0;
-    }
-
-    if(vbo_D_Color)
-    {
-        glDeleteBuffers(1, &vbo_D_Color);
-        vbo_D_Color = 0;
-    }
-
-    if(vbo_D_Position)
-    {
-        glDeleteBuffers(1, &vbo_D_Position);
-        vbo_D_Position = 0;
-    }
-
-    if (vao_D)
-    {
-        glDeleteVertexArrays(1, &vao_D);
-        vao_D = 0;
-    }
-
-    if(vbo_N_Color)
-    {
-        glDeleteBuffers(1, &vbo_N_Color);
-        vbo_N_Color = 0;
-    }
-
-    if(vbo_N_Position)
-    {
-        glDeleteBuffers(1, &vbo_N_Position);
-        vbo_N_Position = 0;
-    }
-
-    if (vao_N)
-    {
-        glDeleteVertexArrays(1, &vao_N);
-        vao_N = 0;
-    }
-
     if(vbo_I_Color)
     {
         glDeleteBuffers(1, &vbo_I_Color);
@@ -827,7 +637,7 @@ main(int argc , const char *argv[])
         vbo_I_Position = 0;
     }
 
-    if (vao_I)
+    if(vao_I)
     {
         glDeleteVertexArrays(1, &vao_I);
         vao_I = 0;
