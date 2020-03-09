@@ -183,7 +183,7 @@ main(int argc , const char *argv[])
     int gNumElements;
 
     bool boKeyOfLightsIsPressed;
-
+    GLuint uiKeyOfLightsIsPressed;
 
 }
 
@@ -227,7 +227,6 @@ main(int argc , const char *argv[])
 
         [self setPixelFormat:pixelFormat];
         [self setOpenGLContext:glContext]; // it automatically releases the older context
-
 
     }
 
@@ -540,7 +539,7 @@ main(int argc , const char *argv[])
     int slices = 50;
     int stacks = 50;
     [self mySphereWithRadius:1.0 slices:slices stacks:stacks];
-    //mySphereWithRadius(0.6f, slices, stacks);
+
     int vertexCount = (slices + 1) * (stacks + 1);
 
     glGenVertexArrays(1, &vao_sphere);
