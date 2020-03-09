@@ -259,7 +259,7 @@ main(int argc , const char *argv[])
     vertexShaderObject = glCreateShader(GL_VERTEX_SHADER);
 
     const GLchar *vertexShaderSourceCode =
-        "#version 440 core" \
+        "#version 410 core" \
         "\n" \
         "in vec4 v_position;" \
         "in vec3 v_normals;" \
@@ -337,7 +337,7 @@ main(int argc , const char *argv[])
 
     fragmentShaderObject = glCreateShader(GL_FRAGMENT_SHADER);
     const GLchar *pcFragmentShaderSourceCode = 
-    "#version 440 core" \
+    "#version 410 core" \
     "\n" \
     "in vec3 diffused_color;" \
     "out vec4 v_frag_color;" \
