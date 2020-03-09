@@ -600,8 +600,8 @@ main(int argc , const char *argv[])
     vmath::mat4 modelRotationMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
-    modelViewMatrix = vmath::translate(2.0f, 0.0f, -5.5f);
-    modelRotationMatrix = vmath::rotate(fangleCube, 1.0f, 0.0f, 0.0f);
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.5f);
+    modelRotationMatrix = vmath::rotate(fangleCube, 0.0f, 1.0f, 0.0f);
 
     modelViewMatrix = modelViewMatrix * modelRotationMatrix;
 
