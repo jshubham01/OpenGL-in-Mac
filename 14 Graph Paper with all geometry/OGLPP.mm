@@ -770,6 +770,30 @@ main(int argc , const char *argv[])
     glDrawArrays(GL_LINE_LOOP, 0, 1000);
     glBindVertexArray(0);
 
+    //
+    // Rectangle
+    //
+    glBindVertexArray(vao_Rectangle);
+    glLineWidth(1.5f);
+    glUniform4f(colorUniform, 1.0f, 1.0f, 0.0f, 1.0f); // red + green = yellow
+    glDrawArrays(GL_LINES, 0, 8);
+    glBindVertexArray(0);
+
+    //
+    // Triangle
+    //
+    glBindVertexArray(vao_Triangle);
+    glDrawArrays(GL_LINES, 0, 6);
+    glBindVertexArray(0);
+
+    //
+    // In-Circle
+    //
+    glBindVertexArray(vao_In_Circle);
+    glDrawArrays(GL_LINE_LOOP, 0, 1000);
+    glBindVertexArray(0);
+
+
     glUseProgram(0);
 
     CGLFlushDrawable((CGLContextObj)[[self openGLContext]CGLContextObj]);
