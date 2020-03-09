@@ -561,9 +561,9 @@ main(int argc , const char *argv[])
     vmath::mat4 modelViewMatrix_1 = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
-    rotateMatrix = vmath::rotate(90.0f, 1.0f, 0.0f, 0.0f);
+    modelRotationMatrix = vmath::rotate(90.0f, 1.0f, 0.0f, 0.0f);
     modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
-    modelViewMatrix = modelViewMatrix * rotateMatrix;
+    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
