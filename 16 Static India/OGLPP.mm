@@ -183,6 +183,8 @@ main(int argc , const char *argv[])
     GLuint vbo_A_Position;
     GLuint vbo_A_Color;
 
+    GLuint mvpUniform;
+
     vmath:: mat4 perspectiveProjectionMatrix;
 }
 
@@ -435,8 +437,6 @@ main(int argc , const char *argv[])
         "u_mvp_matrix"
     );
 
-
-
     GLfloat fOffN;				// letter N starts at this X pos 
     GLfloat fOffD;				// letter D starts at this X pos
     GLfloat fOffA;
@@ -455,29 +455,29 @@ main(int argc , const char *argv[])
     GLfloat fOffForA;
     GLfloat fLetterWidth;
 
-	const GLfloat cfHeight = 4.1f;
-	const GLfloat cfWidth = 7.4f;
+    const GLfloat cfHeight = 4.1f;
+    const GLfloat cfWidth = 7.4f;
 
-	// Drawing Letter I
+    // Drawing Letter I
 
-	fWidthH = cfWidth / 2;
-	fHeightH = cfHeight / 2;
-	fwSpace = 15 * cfWidth / 100;
-	fhSpace = 18 * cfHeight / 100;
+    fWidthH = cfWidth / 2;
+    fHeightH = cfHeight / 2;
+    fwSpace = 15 * cfWidth / 100;
+    fhSpace = 18 * cfHeight / 100;
 
-	GLfloat Yoff;
-	GLfloat fTemp;
-	GLfloat fHeight;
-	GLfloat fLetterSpace;		// like between I and N with space between them
+    GLfloat Yoff;
+    GLfloat fTemp;
+    GLfloat fHeight;
+    GLfloat fLetterSpace;		// like between I and N with space between them
 
-	fTemp = (fWidthH - fwSpace) - (-(fWidthH - fwSpace));
-	fLetterSpace = fTemp / 5;
+    fTemp = (fWidthH - fwSpace) - (-(fWidthH - fwSpace));
+    fLetterSpace = fTemp / 5;
 
-	fOffI1 = -(fWidthH - fwSpace);
-	fOffN = fOffI1 + fLetterSpace;
-	fOffD = fOffN + fLetterSpace;
-	fOffI2 = fOffD + fLetterSpace;
-	fOffA = fOffI2 + fLetterSpace;
+    fOffI1 = -(fWidthH - fwSpace);
+    fOffN = fOffI1 + fLetterSpace;
+    fOffD = fOffN + fLetterSpace;
+    fOffI2 = fOffD + fLetterSpace;
+    fOffA = fOffI2 + fLetterSpace;
 
 	fLetterWidth = fLetterSpace / 4;
 
@@ -671,7 +671,7 @@ main(int argc , const char *argv[])
     vmath::mat4 modelViewMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
-    modelViewMatrix = translate(0.0f, 0.0f, -5.0f);
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
 
     // uniforms are given to m_uv_matrix (i.e. model view matrix)
@@ -685,13 +685,6 @@ main(int argc , const char *argv[])
     glBindVertexArray(vao_I);
     glDrawArrays(GL_TRIANGLE_FAN,  0, 4);
     glBindVertexArray(0);
-
-
-
-
-
-
-
 
 
     glUseProgram(0);
