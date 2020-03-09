@@ -249,6 +249,7 @@ main(int argc , const char *argv[])
         "\n" \
         "in vec4 vPosition;" \
         "in vec4 vColor;" \
+        "out vec4 voutColor;" \
         "uniform mat4 u_mvp_matrix;" \
         "void main(void)" \
         "{" \
