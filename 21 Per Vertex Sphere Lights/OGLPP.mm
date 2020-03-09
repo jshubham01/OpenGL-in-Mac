@@ -38,6 +38,16 @@ FILE *gpFile = NULL;
 @interface GlView : NSOpenGLView
 @end
 
+float light_ambient[4] =  { 0.0f, 0.0f, 0.0f, 0.0f };
+float light_diffused[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+float light_specular[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+float light_position[4] = { 100.0f, 100.0f, 100.0f, 1.0f};
+
+float material_ambient[4] =  { 0.0f, 0.0f, 0.0f, 0.0f };
+float material_diffused[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+float material_specular[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+float material_shineyness = 120.0f;
+
 // Entry-Point Function
 int
 main(int argc , const char *argv[])
@@ -174,15 +184,7 @@ main(int argc , const char *argv[])
 
     bool boKeyOfLightsIsPressed;
 
-    float light_ambient[4] =  { 0.0f, 0.0f, 0.0f, 0.0f };
-    float light_diffused[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    float light_specular[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    float light_position[4] = { 100.0f, 100.0f, 100.0f, 1.0f };
 
-    float material_ambient[4] =  { 0.0f, 0.0f, 0.0f, 0.0f };
-    float material_diffused[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    float material_specular[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-    float material_shineyness = 120.0f;
 }
 
 -(id)initWithFrame:(NSRect)frame;
