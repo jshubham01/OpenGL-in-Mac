@@ -646,7 +646,7 @@ main(int argc , const char *argv[])
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
     glUniformMatrix4fv(uiModelViewUniform, 1, GL_FALSE, modelViewMatrix); 
     glUniformMatrix4fv(uiProjectionUniform, 1, GL_FALSE, perspectiveProjectionMatrix);
-    if (TRUE == boKeyOfLightsIsPressed)
+    if (true == boKeyOfLightsIsPressed)
     {
         glUniform1i(uiKeyOfLightsIsPressed, 1);
         glUniform3f(ldUniform, 1.0, 1.0, 1.0);
@@ -660,7 +660,7 @@ main(int argc , const char *argv[])
 
     glBindVertexArray(vao_sphere);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
-    glDrawElements(GL_LINES, gNumElements, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
     glUseProgram(0);
@@ -694,13 +694,13 @@ main(int argc , const char *argv[])
         
         case 'l':
         case 'L':
-            if (TRUE == boKeyOfLightsIsPressed)
+            if (true == boKeyOfLightsIsPressed)
             {
-            boKeyOfLightsIsPressed = FALSE;
+            boKeyOfLightsIsPressed = true;
             }
             else
             {
-                boKeyOfLightsIsPressed = TRUE;
+                boKeyOfLightsIsPressed = true;
             }
 
             break;
