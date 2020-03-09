@@ -28,7 +28,6 @@ CVReturn MyDisplayLinkCallback(CVDisplayLinkRef,
 
 FILE *gpFile = NULL;
 
-
 /////////////////////////////////////////////////////////////////////
 //	I N T E R F A C E  D E C L A R A T I O N S
 /////////////////////////////////////////////////////////////////////
@@ -159,9 +158,6 @@ main(int argc , const char *argv[])
     int gNumElements;
 
     vmath:: mat4 perspectiveProjectionMatrix;
-
-    float g_iElbow;
-    float g_iShoulder;
 }
 
 -(id)initWithFrame:(NSRect)frame;
@@ -225,9 +221,6 @@ main(int argc , const char *argv[])
 {
     // code
     // OpenGL Info
-    g_iElbow = 0;
-    g_iShoulder = 0;
-
     fprintf(gpFile, "OpenGL Version : %s\n", glGetString(GL_VERSION));
     fprintf(gpFile, "GLSL Version : %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
@@ -404,6 +397,7 @@ main(int argc , const char *argv[])
         "u_mvp_matrix"
     );
 
+
     int slices = 50;
     int stacks = 50;
     [self mySphereWithRadius:1.6 slices:slices stacks:stacks];
@@ -555,10 +549,8 @@ main(int argc , const char *argv[])
     glUseProgram(shaderProgramObject);
 
     // initialize above matrices to identity
-    vmath::mat4 modelRotationMatrix = vmath::mat4::identity();
-    vmath::mat4 scaleMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewMatrix = vmath::mat4::identity();
-    vmath::mat4 modelViewMatrix_1 = vmath::mat4::identity();
+    vmath::mat4 rotateMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
     rotateMatrix = vmath::rotate(90.0f, 1.0f, 0.0f, 0.0f);
@@ -573,49 +565,6 @@ main(int argc , const char *argv[])
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_LINES, gNumElements, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
-
-
-    // // base translation
-    // modelViewMatrix = vmath::translate(0.0f, 0.0f, -12.0f);
-
-    // // push
-    // modelRotationMatrix = vmath::mat4::identity();
-    // modelRotationMatrix = vmath::rotate(g_iShoulder, 0.0f, 0.0f, 1.0f);
-    // modelViewMatrix = modelViewMatrix * modelRotationMatrix;
-    // modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
-
-    // // push 02:18:06:16 - 
-    // scaleMatrix = vmath::scale(2.0f, 0.5f, 1.0f);
-    // modelViewMatrix = modelViewMatrix * scaleMatrix;
-    // modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
-
-    // glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
-    // glBindVertexArray(vao_sphere);
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
-    // glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_SHORT, 0);
-    // glBindVertexArray(0);
-
-    // //pop
-    // modelViewMatrix =  vmath::translate(0.0f, 0.0f, -12.0f);
-
-    // // push
-    // modelRotationMatrix =  vmath::rotate(g_iShoulder, 0.0f, 0.0f, 1.0f);
-    // modelViewMatrix = modelViewMatrix * modelRotationMatrix;
-    // modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
-
-    // modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
-    // modelRotationMatrix = vmath::rotate(g_iElbow, 0.0f, 0.0f, 1.0f);
-    // modelViewMatrix = modelViewMatrix * modelRotationMatrix;
-    // modelViewMatrix = modelViewMatrix *  vmath::translate(1.0f, 0.0f, 0.0f);
-
-    // modelViewMatrix_1 = modelViewMatrix * scaleMatrix;
-    // modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix_1;
-
-    // glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
-    // glBindVertexArray(vao_sphere);
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
-    // glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_SHORT, 0);
-    // glBindVertexArray(0);
 
     glUseProgram(0);
     CGLFlushDrawable((CGLContextObj)[[self openGLContext]CGLContextObj]);
@@ -644,22 +593,6 @@ main(int argc , const char *argv[])
         case 'f':
             //centralText = @"'F' or 'f' Key Is Pressed";
             [[self window]toggleFullScreen:self]; // repainting occurs
-            break;
-
-        case 'S':
-            g_iShoulder = (int) (g_iShoulder + 3) % 360;
-            break;
-
-        case 's':
-            g_iShoulder = (int)(g_iShoulder - 3) % 360;
-            break;
-
-        case 'E':
-            g_iElbow = (int)(g_iElbow + 6) % 360;
-            break;
-
-        case 'e':
-            g_iElbow = (int)(g_iElbow - 6) % 360;
             break;
 
         default:
