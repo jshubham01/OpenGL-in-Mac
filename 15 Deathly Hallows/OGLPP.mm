@@ -623,7 +623,7 @@ main(int argc , const char *argv[])
     modelViewProjectionMatrix = vmath::mat4::identity();
 
     modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
-    modelRotationMatrix = vmath::mat4::rotate(fAngleCloak, 0.0f, 1.0f, 0.0f);
+    modelRotationMatrix = vmath::rotate(fAngleCloak, 0.0f, 1.0f, 0.0f);
 
     modelViewMatrix = modelViewMatrix * modelRotationMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
@@ -643,8 +643,8 @@ main(int argc , const char *argv[])
         modelRotationMatrix = vmath::mat4::identity();
         modelViewProjectionMatrix = vmath::mat4::identity();
 
-        modelViewMatrix = vmath::mat4::translate(-fOne_1, fTwo_2, -5.0f);
-        modelRotationMatrix = vmath::mat4::rotate(fAngleCloak, 0.0f, 1.0f, 0.0f);
+        modelViewMatrix = vmath::translate(-fOne_1, fTwo_2, -5.0f);
+        modelRotationMatrix = vmath::rotate(fAngleCloak, 0.0f, 1.0f, 0.0f);
 
         modelViewMatrix = modelViewMatrix * modelRotationMatrix;
         modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix;
