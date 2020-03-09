@@ -327,8 +327,10 @@ main(int argc , const char *argv[])
     const GLchar *pcFragmentShaderSourceCode = 
     "#version 410 core" \
     "\n" \
-    "out vec4 vFragColor;" \
+    "in vec3 diffused_color;" \
+    "out vec4 v_frag_color;" \
     "uniform int ui_is_lighting_key_pressed;" \
+
     "void main(void)" \
     "{" \
 
@@ -517,9 +519,7 @@ main(int argc , const char *argv[])
     glEnableVertexAttribArray(AMC_ATTRIBUTE_NORMAL);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-
     glBindVertexArray(0);
-
 
     //
     glEnable(GL_DEPTH_TEST);
