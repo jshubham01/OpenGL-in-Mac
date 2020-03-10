@@ -544,10 +544,10 @@ main(int argc , const char *argv[])
         "u_light_position_left"
     );
 
-    lightPositionVectorUniform_sj_right_sj = glGetUniformLocation(g_uiShaderProgramObject_sj, "u_light_position_right");
-    laUniform_right_sj = glGetUniformLocation(g_uiShaderProgramObject_sj, "u_la_right");
-    ldUniform_right_sj = glGetUniformLocation(g_uiShaderProgramObject_sj, "u_ld_right");
-    lsUniform_right_sj = glGetUniformLocation(g_uiShaderProgramObject_sj, "u_ls_right");
+    lightPositionVectorUniform_sj_right_sj = glGetUniformLocation(shaderProgramObject, "u_light_position_right");
+    laUniform_right_sj = glGetUniformLocation(shaderProgramObject, "u_la_right");
+    ldUniform_right_sj = glGetUniformLocation(shaderProgramObject, "u_ld_right");
+    lsUniform_right_sj = glGetUniformLocation(shaderProgramObject, "u_ls_right");
 
 
     kaUniform = glGetUniformLocation(
