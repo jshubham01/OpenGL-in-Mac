@@ -293,7 +293,7 @@ main(int argc , const char *argv[])
         "out vec3 t_norm;" \
         "out vec3 viewer_vector;" \
         "out vec3 light_direction;" \
-        "out vec3 phong_ads_light;" \
+        "out vec3 phong_ads_light_vs;" \
 
         "void main(void)" \
         "{" \
@@ -324,7 +324,7 @@ main(int argc , const char *argv[])
                 "specular = u_ls * u_ks * " \
                     "pow(max(dot(reflection_vector," \
                     "l_viewer_vector), 0.0), u_material_shiney_ness);" \
-                "phong_ads_light = ambient + diffused + specular;" \
+                "phong_ads_light_vs = ambient + diffused + specular;" \
                 "}" \
 
             "}" \
@@ -390,7 +390,7 @@ main(int argc , const char *argv[])
     "\n" \
 
     "in vec3 t_norm;" \
-    "in vec3 phong_ads_light;" \
+    "in vec3 phong_ads_light_vs;" \
 
     "in vec3 light_direction;" \
     "in vec3 viewer_vector;" \
