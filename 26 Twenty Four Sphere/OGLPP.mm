@@ -1020,6 +1020,128 @@ main(int argc , const char *argv[])
     glBindVertexArray(0);
     [self reshape];
 
+    //
+    // Metals
+    // brass
+    //
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_brass);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_brass);
+        glUniform3fv(ksUniform_sj, 1, material_specular_brass);
+        glUniform1f(shineynessUniform_sj, material_shineyness_brass);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport((GLsizei)width / 5, (GLsizei)hight * 2.7 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+    // bronze
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_bronze);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_bronze);
+        glUniform3fv(ksUniform_sj, 1, material_specular_bronze);
+        glUniform1f(shineynessUniform_sj, material_shineyness_bronze);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport((GLsizei)width / 5, (GLsizei)hight * 2.2 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+    // chrome
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_chrome);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_chrome);
+        glUniform3fv(ksUniform_sj, 1, material_specular_chrome);
+        glUniform1f(shineynessUniform_sj, material_shineyness_chrome);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport((GLsizei)width / 5, (GLsizei)hight * 1.7/ 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+    // copper
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_copper);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_copper);
+        glUniform3fv(ksUniform_sj, 1, material_specular_copper);
+        glUniform1f(shineynessUniform_sj, material_shineyness_copper);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport((GLsizei)width / 5, (GLsizei)hight * 1.2 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+    // gold
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_gold);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_gold);
+        glUniform3fv(ksUniform_sj, 1, material_specular_gold);
+        glUniform1f(shineynessUniform_sj, material_shineyness_gold);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport((GLsizei)width / 5, (GLsizei)hight * 1.2 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+    // silver
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_silver);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_silver);
+        glUniform3fv(ksUniform_sj, 1, material_specular_silver);
+        glUniform1f(shineynessUniform_sj, material_shineyness_silver);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport((GLsizei)width / 5, (GLsizei)hight * 0.2 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
 
     glUseProgram(0);
     glDisable(GL_POLYGON_OFFSET_FILL);
