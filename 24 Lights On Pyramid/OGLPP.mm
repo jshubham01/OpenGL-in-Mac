@@ -903,11 +903,11 @@ main(int argc , const char *argv[])
         vbo_position_pyr_sj = 0;
     }
 
-    if(vbo_sphere_elements)
-    {
-        glDeleteBuffers(1, &vbo_sphere_elements);
-        vbo_sphere_elements = 0;
-    }
+    // if(vbo_sphere_elements)
+    // {
+    //     glDeleteBuffers(1, &vbo_sphere_elements);
+    //     vbo_sphere_elements = 0;
+    // }
 
     if(vbo_normals_pyramid_sj)
     {
