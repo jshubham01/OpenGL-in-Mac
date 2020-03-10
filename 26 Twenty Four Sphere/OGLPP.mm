@@ -905,11 +905,11 @@ main(int argc , const char *argv[])
         glUniform1i(uiKeyOfLightsIsPressed, 0);
     }
 
+    modelMatrix = vmath::translate(0.0f, 0.0f, -6.0f);
     glUniformMatrix4fv(uiModelMatrixUniform, 1, GL_FALSE, modelMatrix);
     glUniformMatrix4fv(uiViewMatrixUniform, 1, GL_FALSE, viewMatrix);
     glUniformMatrix4fv(uiProjectionUniform, 1, GL_FALSE, perspectiveProjectionMatrix);
 
-    modelMatrix = vmath::translate(0.0f, 0.0f, -6.0f);
 
     //glViewport(0, (GLsizei)height * 2.7 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
 
@@ -922,24 +922,24 @@ main(int argc , const char *argv[])
 
     // Jade
 
-    if (true == boKeyOfLightsIsPressed)
-    {
-        glUniform3fv(kaUniform_sj, 1, material_ambient_jade);
-        glUniform3fv(kdUniform_sj, 1, material_diffused_jade);
-        glUniform3fv(ksUniform_sj, 1, material_specular_jade);
-        glUniform1f(shineynessUniform_sj, material_shineyness_jade);
-    }
-    else
-    {
-        glUniform1i(uiKeyOfLightsIsPressed, 0);
-    }
+    // if (true == boKeyOfLightsIsPressed)
+    // {
+    //     glUniform3fv(kaUniform_sj, 1, material_ambient_jade);
+    //     glUniform3fv(kdUniform_sj, 1, material_diffused_jade);
+    //     glUniform3fv(ksUniform_sj, 1, material_specular_jade);
+    //     glUniform1f(shineynessUniform_sj, material_shineyness_jade);
+    // }
+    // else
+    // {
+    //     glUniform1i(uiKeyOfLightsIsPressed, 0);
+    // }
 
-    glViewport(0, (GLsizei)height * 2.2/ 4, (GLsizei)width / 3, (GLsizei)hight / 3);
-    glBindVertexArray(vao_sphere);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
-    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
-    [self reshape];
+    // glViewport(0, (GLsizei)height * 2.2/ 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    // glBindVertexArray(vao_sphere);
+    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    // glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    // glBindVertexArray(0);
+    // [self reshape];
 
     glUseProgram(0);
 
