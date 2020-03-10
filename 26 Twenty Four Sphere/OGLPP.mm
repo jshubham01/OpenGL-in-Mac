@@ -1036,7 +1036,7 @@ main(int argc , const char *argv[])
         glUniform1i(uiKeyOfLightsIsPressed, 0);
     }
 
-    glViewport((GLsizei)width / 5, (GLsizei)hight * 2.7 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glViewport((GLsizei)width / 5, (GLsizei)height * 2.7 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
     glBindVertexArray(vao_sphere);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
@@ -1056,7 +1056,7 @@ main(int argc , const char *argv[])
         glUniform1i(uiKeyOfLightsIsPressed, 0);
     }
 
-    glViewport((GLsizei)width / 5, (GLsizei)hight * 2.2 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glViewport((GLsizei)width / 5, (GLsizei)height * 2.2 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
     glBindVertexArray(vao_sphere);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
@@ -1076,7 +1076,7 @@ main(int argc , const char *argv[])
         glUniform1i(uiKeyOfLightsIsPressed, 0);
     }
 
-    glViewport((GLsizei)width / 5, (GLsizei)hight * 1.7/ 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glViewport((GLsizei)width / 5, (GLsizei)height * 1.7/ 4, (GLsizei)width / 3, (GLsizei)height / 3);
     glBindVertexArray(vao_sphere);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
@@ -1096,7 +1096,7 @@ main(int argc , const char *argv[])
         glUniform1i(uiKeyOfLightsIsPressed, 0);
     }
 
-    glViewport((GLsizei)width / 5, (GLsizei)hight * 1.2 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glViewport((GLsizei)width / 5, (GLsizei)height * 1.2 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
     glBindVertexArray(vao_sphere);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
@@ -1116,7 +1116,7 @@ main(int argc , const char *argv[])
         glUniform1i(uiKeyOfLightsIsPressed, 0);
     }
 
-    glViewport((GLsizei)width / 5, (GLsizei)hight * 1.2 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glViewport((GLsizei)width / 5, (GLsizei)height * 1.2 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
     glBindVertexArray(vao_sphere);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
@@ -1136,7 +1136,7 @@ main(int argc , const char *argv[])
         glUniform1i(uiKeyOfLightsIsPressed, 0);
     }
 
-    glViewport((GLsizei)width / 5, (GLsizei)hight * 0.2 / 4, (GLsizei)width / 3, (GLsizei)hight / 3);
+    glViewport((GLsizei)width / 5, (GLsizei)height * 0.2 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
     glBindVertexArray(vao_sphere);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
