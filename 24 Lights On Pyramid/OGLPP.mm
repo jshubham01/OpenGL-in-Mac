@@ -166,7 +166,6 @@ main(int argc , const char *argv[])
     GLuint uiProjectionUniform;
 
     vmath:: mat4 perspectiveProjectionMatrix;
-    float fAngleRotate;
 
     GLuint laUniform_left_sj;
     GLuint ldUniform_left_sj;
@@ -621,10 +620,10 @@ main(int argc , const char *argv[])
 
     glVertexAttribPointer(
             AMC_ATTRIBUTE_POSITION,
-            3,		
+            3,
             GL_FLOAT,
             GL_FALSE,
-            0,		
+            0,
             NULL	
         );
 
@@ -785,11 +784,6 @@ main(int argc , const char *argv[])
             GL_FALSE,
             modelViewMatrix
         );
-    
-    // glUniformMatrix4fv(uiViewMatrixUniform,
-    //     1,
-    //     GL_FALSE,
-    //     viewMatrix);
     
     glUniformMatrix4fv(uiProjectionUniform,
         1,
