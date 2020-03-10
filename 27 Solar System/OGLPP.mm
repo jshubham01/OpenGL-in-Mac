@@ -558,6 +558,7 @@ main(int argc , const char *argv[])
     vmath::mat4 scaleMatrix = vmath::mat4::identity();
     vmath::mat4 rotateMatrix = vmath::mat4::identity();
     vmath::mat4 modelViewMatrix = vmath::mat4::identity();
+    vmath::mat4 modelViewMatrix_ = vmath::mat4::identity();
     vmath::mat4 modelViewProjectionMatrix = vmath::mat4::identity();
 
     rotateMatrix = vmath::rotate(90.0f, 1.0f, 0.0f, 0.0f);
@@ -572,6 +573,45 @@ main(int argc , const char *argv[])
     glBindVertexArray(vao_sphere);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_LINES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+
+    modelViewMatrix = vmath::translate(0.0f, 0.0f, -5.0f);
+    rotateMatrix =  vmath::rotate((float)g_iYear, 0.0f, 1.0f, 0.0f);
+    modelViewMatrix = modelViewMatrix * rotateMatrix;
+
+    modelViewMatrix = modelViewMatrix * translate(2.0f, 0.0f, 0.0f);
+    rotateMatrix = rotate((float)g_iDay, 0.0f, 1.0f, 0.0f);
+    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
+
+    scaleMatrix = scale(0.4f, 0.4f, 0.4f);
+    modelViewMatrix_ = modelViewMatrix * scaleMatrix;
+    modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix_;
+
+    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
+    glUniform4f(colorUniform, 0.4f, 0.9f, 1.0f, 1.0f);
+
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    modelViewMatrix = modelViewMatrix * translate(0.5f, 0.0f, 0.0f);
+    rotateMatrix = rotate((float)g_iLunar, 0.0f, 1.0f, 0.0f);
+    modelViewMatrix = modelViewMatrix * rotateMatrix;
+
+    scaleMatrix = scale(0.2f, 0.2f, 0.2f);
+    modelViewMatrix_ = modelViewMatrix * scaleMatrix;
+    modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix_;
+    glUniformMatrix4fv(
+        mvpUniform,
+        1,
+        GL_FALSE,
+        modelViewProjectionMatrix);
+
+    glUniform4f(colorUniform, 0.5f, 0.5f, 0.4f, 1.0f);
+
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
     glUseProgram(0);
