@@ -50,10 +50,11 @@ float material_shineyness = 120.0f;
 
 // Entry-Point Function
 
-int
 bool fragShader_sj = false;
-{
+
+int
 main(int argc , const char *argv[])
+{
     // Code
     NSAutoreleasePool *pPool = [[NSAutoreleasePool alloc]init];
 
@@ -292,7 +293,7 @@ main(int argc , const char *argv[])
         "out vec3 t_norm;" \
         "out vec3 viewer_vector;" \
         "out vec3 light_direction;" \
-        "out vec3 phong_ads_light_vs;" \
+        "out vec3 phong_ads_light;" \
 
         "void main(void)" \
         "{" \
@@ -588,7 +589,7 @@ main(int argc , const char *argv[])
 
     toggleForVertexAndFragment_sj =
         glGetUniformLocation(
-            g_uiShaderProgramObject_sj, "ui_is_vertex_or_fragment_light"
+            shaderProgramObject, "ui_is_vertex_or_fragment_light"
     );
 
     int slices = 50;
@@ -786,7 +787,7 @@ main(int argc , const char *argv[])
         GL_FALSE,
         perspectiveProjectionMatrix);
     
-    if (TRUE == boKeyOfLightsIsPressed)
+    if (true == boKeyOfLightsIsPressed)
     {
         glUniform1i(uiKeyOfLightsIsPressed, 1);
         glUniform4f(lightPositionVectorUniform, 100.0f, 100.0f, 100.0f, 1.0f);
@@ -800,7 +801,7 @@ main(int argc , const char *argv[])
         glUniform3fv(ksUniform, 1, material_specular);
         glUniform1f(shineynessUniform, material_shineyness);
 
-        if (TRUE == fragShader_sj)
+        if (true == fragShader_sj)
         {
             glUniform1i(toggleForVertexAndFragment_sj, 0);
         }
