@@ -515,7 +515,7 @@ main(int argc , const char *argv[])
 
     uiProjectionUniform = glGetUniformLocation(
         shaderProgramObject,
-        "u_projection_matrix"
+        "u_model_projection_mat"
     );
 
     uiKeyOfLightsIsPressed = glGetUniformLocation(
