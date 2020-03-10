@@ -579,11 +579,11 @@ main(int argc , const char *argv[])
     rotateMatrix =  vmath::rotate((float)g_iYear, 0.0f, 1.0f, 0.0f);
     modelViewMatrix = modelViewMatrix * rotateMatrix;
 
-    modelViewMatrix = modelViewMatrix * translate(2.0f, 0.0f, 0.0f);
-    rotateMatrix = rotate((float)g_iDay, 0.0f, 1.0f, 0.0f);
+    modelViewMatrix = modelViewMatrix * vmath::translate(2.0f, 0.0f, 0.0f);
+    rotateMatrix = vmath::rotate((float)g_iDay, 0.0f, 1.0f, 0.0f);
     modelViewMatrix = modelViewMatrix * modelRotationMatrix;
 
-    scaleMatrix = scale(0.4f, 0.4f, 0.4f);
+    scaleMatrix = vmath::scale(0.4f, 0.4f, 0.4f);
     modelViewMatrix_ = modelViewMatrix * scaleMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix_;
 
@@ -594,11 +594,11 @@ main(int argc , const char *argv[])
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
     glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
-    modelViewMatrix = modelViewMatrix * translate(0.5f, 0.0f, 0.0f);
-    rotateMatrix = rotate((float)g_iLunar, 0.0f, 1.0f, 0.0f);
+    modelViewMatrix = modelViewMatrix * vmath::translate(0.5f, 0.0f, 0.0f);
+    rotateMatrix = vmath::rotate((float)g_iLunar, 0.0f, 1.0f, 0.0f);
     modelViewMatrix = modelViewMatrix * rotateMatrix;
 
-    scaleMatrix = scale(0.2f, 0.2f, 0.2f);
+    scaleMatrix = vmath::scale(0.2f, 0.2f, 0.2f);
     modelViewMatrix_ = modelViewMatrix * scaleMatrix;
     modelViewProjectionMatrix = perspectiveProjectionMatrix * modelViewMatrix_;
     glUniformMatrix4fv(
