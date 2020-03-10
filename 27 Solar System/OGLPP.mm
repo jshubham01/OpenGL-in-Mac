@@ -581,7 +581,7 @@ main(int argc , const char *argv[])
 
     modelViewMatrix = modelViewMatrix * vmath::translate(2.0f, 0.0f, 0.0f);
     rotateMatrix = vmath::rotate((float)g_iDay, 0.0f, 1.0f, 0.0f);
-    modelViewMatrix = modelViewMatrix * modelRotationMatrix;
+    modelViewMatrix = modelViewMatrix * rotateMatrix;
 
     scaleMatrix = vmath::scale(0.4f, 0.4f, 0.4f);
     modelViewMatrix_ = modelViewMatrix * scaleMatrix;
