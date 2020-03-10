@@ -921,7 +921,6 @@ main(int argc , const char *argv[])
     [self reshape];
 
     // Jade
-
     if (true == boKeyOfLightsIsPressed)
     {
         glUniform3fv(kaUniform_sj, 1, material_ambient_jade);
@@ -941,10 +940,90 @@ main(int argc , const char *argv[])
     glBindVertexArray(0);
     [self reshape];
 
-    glUseProgram(0);
+    // obsidian
 
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_obsidian);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_obsidian);
+        glUniform3fv(ksUniform_sj, 1, material_specular_obsidian);
+        glUniform1f(shineynessUniform_sj, material_shineyness_obsidian);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+    glViewport(0, (GLsizei)height * 1.7 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+    // pearl
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_pearl);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_pearl);
+        glUniform3fv(ksUniform_sj, 1, material_specular_pearl);
+        glUniform1f(shineynessUniform_sj, material_shineyness_pearl);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport(0, (GLsizei)height * 1.2 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+    // ruby
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_ruby);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_ruby);
+        glUniform3fv(ksUniform_sj, 1, material_specular_ruby);
+        glUniform1f(shineynessUniform_sj, material_shineyness_ruby);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport(0, (GLsizei)height * 0.7 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+    // tuquoise
+    if (true == boKeyOfLightsIsPressed)
+    {
+        glUniform3fv(kaUniform_sj, 1, material_ambient_turquoise);
+        glUniform3fv(kdUniform_sj, 1, material_diffused_turquoise);
+        glUniform3fv(ksUniform_sj, 1, material_specular_turquoise);
+        glUniform1f(shineynessUniform_sj, material_shineyness_turquoise);
+    }
+    else
+    {
+        glUniform1i(uiKeyOfLightsIsPressed, 0);
+    }
+
+    glViewport(0, (GLsizei)height * 0.2 / 4, (GLsizei)width / 3, (GLsizei)height / 3);
+    glBindVertexArray(vao_sphere);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_sphere_elements);
+    glDrawElements(GL_TRIANGLES, gNumElements, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+    [self reshape];
+
+
+    glUseProgram(0);
     glDisable(GL_POLYGON_OFFSET_FILL);
-    ind = ind + 1;
+    ind = ind + 2;
     if (ind > 1000)
     {
         ind = 0;
