@@ -712,9 +712,9 @@ main(int argc , const char *argv[])
 -(void) dealloc
 {
     // code
-    GLuint vao_cube;
-    GLuint vbo_position_cube;
-    GLuint vbo_normals_cube;
+    // GLuint vao_cube;
+    // GLuint vbo_position_cube;
+    // GLuint vbo_normals_cube;
 
     if(vbo_normals_cube)
     {
