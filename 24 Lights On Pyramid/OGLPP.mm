@@ -503,7 +503,7 @@ main(int argc , const char *argv[])
         }
     }
 
-    uiModelViewUniform_sj = glGetUniformLocation(
+    uiModelMatrixUniform = glGetUniformLocation(
         shaderProgramObject,
         "u_model_view_mat"
     );
